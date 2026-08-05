@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist_Mono, Manrope } from 'next/font/google';
 
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
@@ -9,9 +9,14 @@ import { Providers } from '@/providers';
 import './globals.css';
 
 /* `variable` exposes each font as a CSS custom property, which
-   styles/tokens.css maps onto `--font-sans` / `--font-mono`. */
-const geistSans = Geist({
-    variable: '--font-geist-sans',
+   styles/tokens.css maps onto `--font-sans` / `--font-mono`.
+
+   The design system specifies Manrope exclusively — it backs both `--font-sans`
+   and `--font-heading`. No `weight` here on purpose: Manrope is a variable
+   font, and naming weights would pin it to static instances. Left variable, the
+   whole 400–700 range the system uses comes from one file. */
+const manrope = Manrope({
+    variable: '--font-manrope',
     subsets: ['latin'],
     display: 'swap',
 });
@@ -58,8 +63,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
     /* Two entries so the browser chrome matches the active theme. */
     themeColor: [
-        { media: '(prefers-color-scheme: light)', color: 'white' },
-        { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+        { media: '(prefers-color-scheme: light)', color: '#f8fafc' },
+        { media: '(prefers-color-scheme: dark)', color: '#0b1220' },
     ],
 };
 
@@ -71,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                inline script before React hydrates, so the server and client
                markup legitimately differ here. */
             suppressHydrationWarning
-            className={`${geistSans.variable} ${geistMono.variable} h-full`}
+            className={`${manrope.variable} ${geistMono.variable} h-full`}
         >
             <body className="flex min-h-full flex-col">
                 <Providers>

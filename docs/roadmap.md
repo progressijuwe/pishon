@@ -4,7 +4,8 @@
 
 - Next.js 16 App Router on Turbopack, React 19, TypeScript strict
 - Token-driven design system: semantic type scale, named spacing, radius from a
-  single knob, soft shadow set, light/dark palettes in `oklch`
+  single knob, navy-tinted shadow set, light/dark palettes from the Stitch
+  "Industrial Authority" system
 - Theming via next-themes with no flash of the wrong theme
 - 11 UI primitives — Button, Card, Badge, Input, Textarea, Spinner, Avatar,
   Alert, Modal, Tabs, Accordion — on Radix where focus or keyboard nav is involved
