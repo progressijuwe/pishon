@@ -53,7 +53,7 @@ export function Hero({
             <Container className="relative z-10 w-full pt-20">
                 <div className="max-w-2xl text-white">
                     <Reveal>
-                        <Heading as="h1" size="h3" className="md:text-h1 mb-6 text-balance">
+                        <Heading as="h1" size="h1" className="mb-6 text-balance">
                             {title}
                         </Heading>
                     </Reveal>

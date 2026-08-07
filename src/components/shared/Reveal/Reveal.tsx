@@ -13,10 +13,16 @@ export interface RevealProps {
     className?: string;
 }
 
+/**
+ * Horizontal starts only apply from `md` up. A sideways offset on a full-width
+ * element widens the page while it waits to animate, which shows as a stray
+ * horizontal scrollbar on a phone — and the side-to-side motion only reads at
+ * all once the layout is two columns. Below that, everything rises instead.
+ */
 const FROM_CLASSES = {
     up: 'translate-y-8',
-    left: '-translate-x-8',
-    right: 'translate-x-8',
+    left: 'translate-y-8 md:translate-y-0 md:-translate-x-8',
+    right: 'translate-y-8 md:translate-y-0 md:translate-x-8',
     none: '',
 } as const;
 

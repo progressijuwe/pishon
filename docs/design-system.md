@@ -84,21 +84,38 @@ a hover colour. `accent` stays a neutral tint.
 The scale is semantic, not measurement-based. `text-h2` states intent;
 `text-3xl` states a number that means nothing six months later.
 
-| Token          | Size            | Use                   |
-| -------------- | --------------- | --------------------- |
-| `text-display` | 4.5rem (72px)   | Hero headline         |
-| `text-h1`      | 3.5rem (56px)   | Page title            |
-| `text-h2`      | 2.75rem (44px)  | Section heading       |
-| `text-h3`      | 2.25rem (36px)  | Subsection            |
-| `text-h4`      | 1.5rem (24px)   | Card title            |
-| `text-body`    | 1.125rem (18px) | Running prose         |
-| `text-small`   | 1rem (16px)     | Secondary detail      |
-| `text-caption` | 0.875rem (14px) | Labels, metadata      |
-| `text-label`   | 1rem (16px)     | Button and chip label |
+| Token          | Mobile → desktop | Use                   |
+| -------------- | ---------------- | --------------------- |
+| `text-display` | 48px → 72px      | Hero headline         |
+| `text-h1`      | 40px → 56px      | Page title            |
+| `text-h2`      | 32px → 44px      | Section heading       |
+| `text-h3`      | 28px → 36px      | Subsection            |
+| `text-h4`      | 20px → 24px      | Card title            |
+| `text-body`    | 18px             | Running prose         |
+| `text-small`   | 16px             | Secondary detail      |
+| `text-caption` | 14px             | Labels, metadata      |
+| `text-label`   | 16px             | Button and chip label |
 
-Body runs at 18px/1.7 deliberately — the system calls this "controlled density",
-so dense procurement data stays scannable. Constrain prose to `max-w-prose`
-(45rem ≈ 720px); past that, line length starts costing you readers.
+The five headline sizes are **fluid** — a `clamp()` interpolating between the
+system's mobile and desktop figures across a 375px–1280px viewport. Write the
+semantic size and nothing else:
+
+```tsx
+<Heading as="h1" size="h1">Page title</Heading> {/* 40px on a phone, 56px on a desktop */}
+```
+
+Do **not** pair a smaller size with a `md:text-*` override to fake this — that
+was the old workaround, and it flattened h1, h2 and h3 to an identical 36px on
+mobile.
+
+Each clamp is `rem + vw`, never bare `vw`, so type still responds to the
+reader's browser font size.
+
+Body, small and caption stay fixed: prose has an optimal size and shouldn't
+track the viewport. Body runs at 18px/1.7 deliberately — the system calls this
+"controlled density", so dense procurement data stays scannable. Constrain prose
+to `max-w-prose` (45rem ≈ 720px); past that, line length starts costing you
+readers.
 
 Each carries its own line-height, letter-spacing and weight, so `text-h2` alone
 is the whole treatment.

@@ -34,7 +34,7 @@ export function ImageTiles({ title, description, items, surface = 'none' }: Imag
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                     {items.map((item, index) => (
                         <Reveal key={item.title} delay={index * 100}>
-                            <article className="group relative h-[450px] overflow-hidden rounded-xl">
+                            <article className="group relative h-112.5 overflow-hidden rounded-xl">
                                 <Image
                                     src={item.image}
                                     alt={item.imageAlt}
@@ -50,7 +50,7 @@ export function ImageTiles({ title, description, items, surface = 'none' }: Imag
                                     className="from-scrim absolute inset-0 bg-linear-to-t via-transparent to-transparent"
                                 />
 
-                                <div className="absolute inset-x-0 bottom-0 p-12 text-white transition-transform duration-500 group-hover:-translate-y-2">
+                                <div className="absolute inset-x-0 bottom-0 p-6 text-white transition-transform duration-500 group-hover:-translate-y-2">
                                     <Heading as="h3" size="h4" className="mb-2">
                                         {item.title}
                                     </Heading>
