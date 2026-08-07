@@ -29,9 +29,15 @@ export const headingVariants = cva('text-pretty', {
         },
     },
 
+    /**
+     * `align` has no default on purpose. Emitting `text-left` on every heading
+     * would override the alignment inherited from a centred container, which is
+     * how a centred block ends up with a centred title and a left-aligned
+     * paragraph. Unset, alignment flows from the parent; pass `align` only to
+     * override it.
+     */
     defaultVariants: {
         size: 'h2',
-        align: 'left',
         muted: false,
     },
 });

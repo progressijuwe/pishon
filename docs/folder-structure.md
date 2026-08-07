@@ -8,7 +8,7 @@ src/
 │   ├── ui/         Generic primitives — Button, Input, Modal
 │   ├── shared/     Composition helpers — Container, Section, Heading
 │   ├── layout/     Site chrome — Header, Footer, ThemeToggle
-│   ├── sections/   Page bands — Hero, Showcase
+│   ├── sections/   Page bands — Hero, MediaSplit, CardGrid
 │   └── forms/      Complete forms wired to a schema
 ├── config/         Site metadata and validated environment
 ├── constants/      Routes, query keys, other frozen values

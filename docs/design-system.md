@@ -158,6 +158,7 @@ and transition to effectively zero. Don't defeat it with `!important`.
 
 ## Verifying changes
 
-`/` renders every token and component on one page. Change a token, load it, and
-toggle the theme in the header — if anything hardcodes a colour, it shows up
-there immediately.
+Change a token, load a page that uses it, and toggle the theme in the header — if
+anything hardcodes a colour, it shows up immediately. `/` exercises most of the
+system: the scrim and white-on-photo treatment in `Hero`, muted prose and the
+inverted highlight card in `MediaSplit`, and card elevation in `CardGrid`.

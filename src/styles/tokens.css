@@ -57,6 +57,17 @@
     --gold: #d6a85a;
     --gold-foreground: #0f2747;
 
+    /**
+     * Scrim over full-bleed photography, so white type stays legible on top of
+     * it. The system's deepest navy — darker than `--primary`, which has to
+     * stay readable as a surface colour.
+     *
+     * Deliberately identical in both themes: this sits on a photograph, not on
+     * the page, and lightening it in dark mode would strand the white text it
+     * exists to support.
+     */
+    --scrim: #00122b;
+
     /* Feedback */
     --destructive: #dc2626;
     --destructive-foreground: #ffffff;
@@ -121,6 +132,9 @@
     --gold: #efbf6e;
     --gold-foreground: #011b3b;
 
+    /* Unchanged from light on purpose — see the note in `:root`. */
+    --scrim: #00122b;
+
     --destructive: #ff6467;
     --destructive-foreground: #0b1220;
     --success: #4fb768;
@@ -180,6 +194,8 @@
 
     --color-gold: var(--gold);
     --color-gold-foreground: var(--gold-foreground);
+
+    --color-scrim: var(--scrim);
 
     --color-destructive: var(--destructive);
     --color-destructive-foreground: var(--destructive-foreground);

@@ -65,7 +65,7 @@ functions wide precisely so that swap stays contained.
 1. Update `src/config/site.ts` — name, description, URL, links
 2. Replace the mark in `src/components/shared/Logo/Logo.tsx`
 3. Set the brand colours in `src/styles/tokens.css` (both blocks)
-4. Delete `src/components/sections/Showcase/` and reset `src/app/page.tsx`
+4. Compose `src/app/page.tsx` from the section components, passing copy as props
 5. Copy `.env.example` to `.env.local`
 6. Add a real `/og.png` at 1200×630
 7. Point `NEXT_PUBLIC_API_URL` at the actual backend

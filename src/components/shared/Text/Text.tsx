@@ -32,10 +32,14 @@ const textVariants = cva('', {
             false: '',
         },
     },
+    /**
+     * `align` has no default on purpose — see the note in `headingVariants`.
+     * Alignment inherits from the container so a centred block centres as a
+     * whole; pass `align` only to override it.
+     */
     defaultVariants: {
         size: 'body',
         weight: 'normal',
-        align: 'left',
         muted: false,
         balance: false,
     },

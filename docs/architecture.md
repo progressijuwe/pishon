@@ -16,8 +16,9 @@
 
 Server Components are the default. A page renders on the server and ships HTML;
 only the interactive leaves ship JavaScript. The home page proves the pattern —
-`page.tsx`, `Hero` and `Showcase` are all Server Components, and only `Modal`,
-`Tabs`, `Accordion`, `ThemeToggle` and `ContactForm` cross the boundary.
+`page.tsx` and every section — `Hero`, `MediaSplit`, `CardGrid` — are Server
+Components, and only `Modal`, `Tabs`, `Accordion`, `ThemeToggle`, `ContactForm`
+and the header's `HeaderShell` / `NavMenu` cross the boundary.
 
 `Providers` is itself a Server Component that renders two client providers.
 Because `children` is passed _through_ rather than imported by them, everything
