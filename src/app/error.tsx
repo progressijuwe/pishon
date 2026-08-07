@@ -49,7 +49,7 @@ export default function Error({
                     </Reveal>
 
                     <Reveal delay={100}>
-                        <Heading as="h1" size="h3" className="md:text-h1 mb-6 text-balance">
+                        <Heading as="h1" size="h1" className="mb-6 text-balance">
                             This page didn&apos;t load
                         </Heading>
                     </Reveal>

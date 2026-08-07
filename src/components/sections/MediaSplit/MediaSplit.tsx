@@ -56,7 +56,16 @@ export function MediaSplit({
                         </div>
 
                         {highlight ? (
-                            <div className="bg-primary text-primary-foreground absolute -right-12 -bottom-12 hidden max-w-70 rounded-xl p-12 lg:block">
+                            <div
+                                className={cn(
+                                    'bg-primary text-primary-foreground absolute -bottom-12 hidden max-w-70 rounded-xl p-12 lg:block',
+                                    /* Overhangs toward the column gap, never the
+                                       page edge — reversed, the media sits on
+                                       the right and `-right-12` would push the
+                                       document sideways. */
+                                    reverse ? '-left-12' : '-right-12',
+                                )}
+                            >
                                 <div className="text-h3 mb-1">{highlight.value}</div>
                                 <Text size="small" className="opacity-80">
                                     {highlight.description}
@@ -70,7 +79,7 @@ export function MediaSplit({
                         delay={120}
                         className={cn('flex flex-col gap-6', reverse && 'lg:order-1')}
                     >
-                        <Heading as="h2" size="h3" className="md:text-h2 text-balance">
+                        <Heading as="h2" size="h2" className="text-balance">
                             {title}
                         </Heading>
 

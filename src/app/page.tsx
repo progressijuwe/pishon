@@ -163,7 +163,7 @@ export default function HomePage() {
                 columns={2}
                 aside={
                     <>
-                        <Heading as="h2" size="h3" className="md:text-h2 mb-6 text-balance">
+                        <Heading as="h2" size="h2" className="mb-6 text-balance">
                             Our Integrated Service Model
                         </Heading>
                         <Text className="mb-12 opacity-80">

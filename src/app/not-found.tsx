@@ -30,7 +30,7 @@ export default function NotFound() {
                     </Reveal>
 
                     <Reveal delay={100}>
-                        <Heading as="h1" size="h3" className="md:text-h1 mt-6 mb-6 text-balance">
+                        <Heading as="h1" size="h1" className="mt-6 mb-6 text-balance">
                             We couldn&apos;t find that page
                         </Heading>
                     </Reveal>

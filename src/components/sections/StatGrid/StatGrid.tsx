@@ -3,6 +3,7 @@ import { CountUp } from '@/components/shared/CountUp';
 import { Reveal } from '@/components/shared/Reveal';
 import { Section } from '@/components/shared/Section';
 import { Text } from '@/components/shared/Text';
+import { cn } from '@/lib/utils';
 
 export interface Stat {
     value: string;
@@ -12,26 +13,54 @@ export interface Stat {
 
 export interface StatGridProps {
     stats: readonly Stat[];
+    columns?: 3 | 4 | 5;
+    /** `compact` drops the figure to heading size for a dense strip of numbers. */
+    size?: 'display' | 'compact';
     surface?: 'none' | 'alt';
 }
+
+const COLUMN_CLASSES = {
+    3: 'md:grid-cols-3',
+    4: 'grid-cols-2 md:grid-cols-4',
+    5: 'grid-cols-2 md:grid-cols-5',
+} as const;
 
 /**
  * Headline figures as a definition list. `flex-col-reverse` shows the value
  * above its label while the reading order stays label-then-value for assistive
  * technology.
  */
-export function StatGrid({ stats, surface = 'none' }: StatGridProps) {
+export function StatGrid({
+    stats,
+    columns = 3,
+    size = 'display',
+    surface = 'none',
+}: StatGridProps) {
+    const isCompact = size === 'compact';
+
     return (
-        <Section spacing="2xl" surface={surface === 'alt' ? 'alt' : 'none'}>
+        <Section spacing={isCompact ? 'xl' : '2xl'} surface={surface === 'alt' ? 'alt' : 'none'}>
             <Container>
-                <dl className="grid grid-cols-1 gap-12 text-center md:grid-cols-3">
+                <dl className={cn('grid grid-cols-1 gap-12 text-center', COLUMN_CLASSES[columns])}>
                     {stats.map((stat, index) => (
                         <Reveal key={stat.label} delay={index * 120}>
                             <div className="flex flex-col-reverse">
-                                <dt className="text-h3 text-secondary mb-1 font-semibold">
+                                <dt
+                                    className={cn(
+                                        'text-secondary mb-1 font-semibold',
+                                        isCompact
+                                            ? 'text-caption tracking-wider uppercase'
+                                            : 'text-h3',
+                                    )}
+                                >
                                     {stat.label}
                                 </dt>
-                                <dd className="text-display text-primary mb-4 leading-none">
+                                <dd
+                                    className={cn(
+                                        'text-primary mb-4 leading-none',
+                                        isCompact ? 'text-h2' : 'text-display',
+                                    )}
+                                >
                                     <CountUp value={stat.value} />
                                 </dd>
                             </div>

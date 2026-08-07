@@ -243,32 +243,43 @@
  * Tailwind inlines them and drops whatever goes unused.
  */
 @theme {
-    /* Typography. Semantic names, not t-shirt sizes: `text-h2` states intent,
-       `text-3xl` states a measurement. Pair with Heading's `as` for semantics.
-
-       Sizes are the system's scale: Display XL 72px down to Caption 14px. Body
-       runs at 18px/1.7 by design — "controlled density", so procurement tables
-       and spec sheets stay scannable. */
-    --text-display: 4.5rem;
+    /**
+     * Typography. Semantic names, not t-shirt sizes: `text-h2` states intent,
+     * `text-3xl` states a measurement. Pair with Heading's `as` for semantics.
+     *
+     * The headline sizes are fluid, interpolating between the system's mobile
+     * and desktop figures (Display 48→72, H1 40→56, H2 32→44, H3 28→36, H4
+     * 20→24) across a 375px–1280px viewport. The design specifies both ends;
+     * pinning only the desktop value is what used to flatten H1, H2 and H3 into
+     * the same size on a phone and force `md:text-*` patches at every call site.
+     *
+     * Each clamp is `rem + vw`, never bare `vw`. The rem term keeps the type
+     * responding to the reader's browser font size, which a pure-viewport
+     * formula would ignore.
+     *
+     * Body, small and caption stay fixed — prose has an optimal size, and 18px
+     * at 1.7 is the "controlled density" the system asks for.
+     */
+    --text-display: clamp(3rem, 2.378rem + 2.653vw, 4.5rem);
     --text-display--line-height: 1.1;
     --text-display--letter-spacing: -0.02em;
     --text-display--font-weight: 700;
 
-    --text-h1: 3.5rem;
+    --text-h1: clamp(2.5rem, 2.086rem + 1.768vw, 3.5rem);
     --text-h1--line-height: 1.15;
     --text-h1--font-weight: 700;
 
-    --text-h2: 2.75rem;
+    --text-h2: clamp(2rem, 1.689rem + 1.326vw, 2.75rem);
     --text-h2--line-height: 1.2;
     --text-h2--font-weight: 700;
 
-    --text-h3: 2.25rem;
+    --text-h3: clamp(1.75rem, 1.543rem + 0.884vw, 2.25rem);
     --text-h3--line-height: 1.3;
     --text-h3--font-weight: 600;
 
     /* Not in the Stitch scale — interpolated between H3 and Body LG so card
        titles have a step to land on. */
-    --text-h4: 1.5rem;
+    --text-h4: clamp(1.25rem, 1.146rem + 0.442vw, 1.5rem);
     --text-h4--line-height: 1.35;
     --text-h4--font-weight: 600;
 

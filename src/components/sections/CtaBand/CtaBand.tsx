@@ -36,7 +36,7 @@ export function CtaBand({ title, description, actions = [] }: CtaBandProps) {
             <Container className="relative z-10">
                 <div className="mx-auto max-w-4xl text-center">
                     <Reveal>
-                        <Heading as="h2" size="h3" className="md:text-h1 mb-6 text-balance">
+                        <Heading as="h2" size="h1" className="mb-6 text-balance">
                             {title}
                         </Heading>
                     </Reveal>

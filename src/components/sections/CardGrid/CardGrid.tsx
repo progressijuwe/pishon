@@ -65,7 +65,7 @@ export function CardGrid({
                                     />
                                 </div>
 
-                                <CardContent className="flex-1 p-8">
+                                <CardContent className="flex-1 p-6">
                                     <Heading as="h3" size="h4" className="mb-4">
                                         {item.title}
                                     </Heading>
@@ -75,7 +75,7 @@ export function CardGrid({
                                 </CardContent>
 
                                 {item.action ? (
-                                    <CardFooter className="px-8 pb-8">
+                                    <CardFooter className="px-6 pb-6">
                                         <Link
                                             href={item.action.href}
                                             className="text-secondary focus-visible:ring-ring inline-flex items-center gap-1 rounded-md font-bold outline-none focus-visible:ring-[3px]"

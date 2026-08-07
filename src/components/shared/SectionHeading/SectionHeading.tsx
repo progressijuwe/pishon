@@ -37,7 +37,7 @@ export function SectionHeading({
                 </span>
             ) : null}
 
-            <Heading as={as} size="h3" className="md:text-h2 text-balance">
+            <Heading as={as} size="h2" className="text-balance">
                 {title}
             </Heading>
 
