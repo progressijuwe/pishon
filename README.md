@@ -67,7 +67,7 @@ ESLint · Prettier · Husky · lint-staged
 1. Update `src/config/site.ts` — name, description, URL, links
 2. Replace the mark in `src/components/shared/Logo/Logo.tsx`
 3. Set brand colours in `src/styles/tokens.css` (both the `:root` and `.dark` blocks)
-4. Delete `src/components/sections/Showcase/` and reset `src/app/page.tsx`
+4. Compose `src/app/page.tsx` from the section components, passing copy as props
 5. Point `NEXT_PUBLIC_API_URL` at your backend
 6. Add a real `/og.png` at 1200×630
 

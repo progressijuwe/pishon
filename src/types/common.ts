@@ -24,6 +24,12 @@ export interface NavItem {
     /** Renders the link with a target="_blank" affordance. */
     external?: boolean;
     disabled?: boolean;
+    /**
+     * Second-level links. An item with children is a disclosure rather than a
+     * destination — the nav renders it as a toggle, and `href` is only used as
+     * its stable identity.
+     */
+    children?: readonly NavItem[];
 }
 
 /** Makes the listed keys required while leaving the rest untouched. */

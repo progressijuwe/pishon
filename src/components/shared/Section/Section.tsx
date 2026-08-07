@@ -16,17 +16,25 @@ const sectionVariants = cva('', {
          */
         spacing: {
             none: '',
-            xs: 'py-2',
+            xs: 'py-1',
             sm: 'py-4',
             md: 'py-6',
-            lg: 'py-10',
-            xl: 'py-16',
-            '2xl': 'py-24',
+            lg: 'py-12',
+            xl: 'py-20',
+            /**
+             * The system's signature section padding — 120px desktop, 160px for
+             * hero bands. Both reflow to 64px on mobile, which keeps momentum
+             * without giving up the "spacious" brand promise.
+             */
+            '2xl': 'py-16 md:py-30',
+            hero: 'py-16 md:py-40',
         },
         surface: {
             none: '',
             muted: 'bg-muted/40',
             card: 'bg-card',
+            /* Section Alt — a tonal break between long-form content areas. */
+            alt: 'bg-muted',
         },
     },
     defaultVariants: {

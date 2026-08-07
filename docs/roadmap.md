@@ -4,7 +4,8 @@
 
 - Next.js 16 App Router on Turbopack, React 19, TypeScript strict
 - Token-driven design system: semantic type scale, named spacing, radius from a
-  single knob, soft shadow set, light/dark palettes in `oklch`
+  single knob, navy-tinted shadow set, light/dark palettes from the Stitch
+  "Industrial Authority" system
 - Theming via next-themes with no flash of the wrong theme
 - 11 UI primitives — Button, Card, Badge, Input, Textarea, Spinner, Avatar,
   Alert, Modal, Tabs, Accordion — on Radix where focus or keyboard nav is involved
@@ -64,7 +65,7 @@ functions wide precisely so that swap stays contained.
 1. Update `src/config/site.ts` — name, description, URL, links
 2. Replace the mark in `src/components/shared/Logo/Logo.tsx`
 3. Set the brand colours in `src/styles/tokens.css` (both blocks)
-4. Delete `src/components/sections/Showcase/` and reset `src/app/page.tsx`
+4. Compose `src/app/page.tsx` from the section components, passing copy as props
 5. Copy `.env.example` to `.env.local`
 6. Add a real `/og.png` at 1200×630
 7. Point `NEXT_PUBLIC_API_URL` at the actual backend
