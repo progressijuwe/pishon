@@ -8,16 +8,9 @@ import { Button } from '@/components/ui/Button';
 import { mainNav } from '@/config/site';
 import { ROUTES } from '@/constants/routes';
 
-/**
- * Rendered inside the root layout, so the header sits over it. That header is
- * the `overlay` variant — white type on a transparent bar — which is why this
- * page is a full-viewport `--scrim` band rather than an ordinary light section:
- * on the page background the brand mark and hamburger would drop to about
- * 1:1 contrast and disappear.
- */
 export default function NotFound() {
     return (
-        <section className="bg-scrim relative flex min-h-dvh items-center overflow-hidden text-white">
+        <section className="bg-scrim on-scrim relative flex min-h-dvh items-center overflow-hidden text-white">
             <div
                 aria-hidden="true"
                 className="from-secondary absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] to-transparent opacity-10"

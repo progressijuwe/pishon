@@ -23,13 +23,6 @@ const avatarVariants = cva('relative flex shrink-0 overflow-hidden rounded-full 
 export interface AvatarProps
     extends ComponentProps<typeof AvatarPrimitive.Root>, VariantProps<typeof avatarVariants> {}
 
-/**
- * Avatar image with a guaranteed fallback.
- *
- * Radix handles the load lifecycle: the fallback shows while the image is
- * loading and stays if it errors, so a broken URL degrades to initials rather
- * than a broken-image glyph.
- */
 export function Avatar({ className, size, ...props }: AvatarProps) {
     return (
         <AvatarPrimitive.Root
@@ -58,7 +51,6 @@ export function AvatarFallback({
     return (
         <AvatarPrimitive.Fallback
             data-slot="avatar-fallback"
-            /* Brief delay so a fast-loading image doesn't flash initials first. */
             delayMs={delayMs}
             className={cn(
                 'bg-muted text-muted-foreground flex size-full items-center justify-center rounded-full font-medium',

@@ -7,6 +7,7 @@ import { Reveal } from '@/components/shared/Reveal';
 import { Section } from '@/components/shared/Section';
 import { SectionHeading } from '@/components/shared/SectionHeading';
 import { Button } from '@/components/ui/Button';
+import { actionArrow } from '@/lib/action-arrow';
 
 export interface ProductSpec {
     label: string;
@@ -17,7 +18,6 @@ export interface ProductGridItem {
     title: string;
     image: StaticImageData;
     imageAlt: string;
-    /** Rendered as a label/value definition list. */
     specs?: readonly ProductSpec[];
     action?: { label: string; href: string };
 }
@@ -25,7 +25,6 @@ export interface ProductGridItem {
 export interface ProductGridProps {
     eyebrow?: string;
     title?: string;
-    /** Trailing action beside the title — typically "View all". */
     action?: { label: string; href: string };
     items: readonly ProductGridItem[];
     surface?: 'none' | 'alt';
@@ -46,6 +45,7 @@ export function ProductGrid({ eyebrow, title, action, items, surface = 'none' }:
                                         variant="outline"
                                         size="lg"
                                         asChild
+                                        rightIcon={actionArrow(action.href)}
                                         className="h-12 px-8 transition-transform hover:scale-[1.03]"
                                     >
                                         <Link href={action.href}>{action.label}</Link>

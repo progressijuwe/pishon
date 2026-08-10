@@ -6,12 +6,12 @@ import { Heading } from '@/components/shared/Heading';
 import { Reveal } from '@/components/shared/Reveal';
 import { Text } from '@/components/shared/Text';
 import { Button } from '@/components/ui/Button';
+import { actionArrow } from '@/lib/action-arrow';
 import { cn } from '@/lib/utils';
 
 export interface HeroAction {
     label: string;
     href: string;
-    /** `outline` is the white-bordered pill, restated to read on a photograph. */
     variant?: 'primary' | 'outline';
 }
 
@@ -19,10 +19,8 @@ export interface HeroProps {
     title: string;
     description?: string;
     image: StaticImageData;
-    /** Leave empty for a decorative backdrop; set it when the image is the message. */
     imageAlt?: string;
     actions?: readonly HeroAction[];
-    /** Eager-load the image. On by default — a hero is its page's LCP element. */
     priority?: boolean;
 }
 
@@ -35,7 +33,7 @@ export function Hero({
     priority = true,
 }: HeroProps) {
     return (
-        <section className="relative flex min-h-dvh items-center overflow-hidden">
+        <section className="on-scrim relative flex min-h-dvh items-center overflow-hidden">
             <Image
                 src={image}
                 alt={imageAlt}
@@ -47,7 +45,7 @@ export function Hero({
 
             <div
                 aria-hidden="true"
-                className="from-scrim/95 to-scrim/40 absolute inset-0 bg-linear-to-r"
+                className="from-scrim/95 to-scrim/65 lg:via-scrim/80 lg:to-scrim/40 absolute inset-0 bg-linear-to-r lg:via-60%"
             />
 
             <Container className="relative z-10 w-full pt-20">
@@ -77,6 +75,7 @@ export function Hero({
                                         }
                                         size="lg"
                                         asChild
+                                        rightIcon={actionArrow(action.href)}
                                         className={cn(
                                             'text-label h-12 px-8 transition-transform hover:scale-[1.03]',
                                             action.variant === 'outline' &&

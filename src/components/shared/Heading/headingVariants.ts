@@ -1,14 +1,7 @@
 import { cva } from 'class-variance-authority';
 
-/**
- * Visual style only. The semantic level comes from Heading's `as` prop, which
- * is what keeps the document outline correct when a page's second section needs
- * to *look* like a display heading but *be* an `<h2>`.
- */
 export const headingVariants = cva('text-pretty', {
     variants: {
-        /* Maps onto the `--text-*` tokens in styles/tokens.css, which already
-           carry their own line-height, tracking and weight. */
         size: {
             display: 'text-display',
             h1: 'text-h1',
@@ -29,13 +22,6 @@ export const headingVariants = cva('text-pretty', {
         },
     },
 
-    /**
-     * `align` has no default on purpose. Emitting `text-left` on every heading
-     * would override the alignment inherited from a centred container, which is
-     * how a centred block ends up with a centred title and a left-aligned
-     * paragraph. Unset, alignment flows from the parent; pass `align` only to
-     * override it.
-     */
     defaultVariants: {
         size: 'h2',
         muted: false,

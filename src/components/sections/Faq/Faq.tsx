@@ -17,7 +17,6 @@ export interface FaqEntry {
 export interface FaqProps {
     title?: string;
     items: readonly FaqEntry[];
-    /** Question opened on first paint. Defaults to the first. */
     defaultOpen?: string;
     surface?: 'none' | 'alt';
 }

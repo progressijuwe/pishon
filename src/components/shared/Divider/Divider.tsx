@@ -7,18 +7,9 @@ export interface DividerProps extends Omit<
     ComponentProps<typeof SeparatorPrimitive.Root>,
     'children'
 > {
-    /** Optional text set into the rule, e.g. "or". */
     label?: ReactNode;
 }
 
-/**
- * Horizontal or vertical rule.
- *
- * Radix marks it `decorative` by default, which keeps it out of the
- * accessibility tree — correct for a purely visual line. Pass
- * `decorative={false}` when the rule genuinely separates two sections of
- * content, so it's announced as a separator.
- */
 export function Divider({
     className,
     orientation = 'horizontal',

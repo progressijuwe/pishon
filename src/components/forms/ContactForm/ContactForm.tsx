@@ -5,21 +5,23 @@ import { useMutation } from '@tanstack/react-query';
 import { SendIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
+import { siteConfig } from '@/config/site';
+import { ApiError, getErrorMessage } from '@/lib/api-error';
+import { api } from '@/services/api';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
-import { ApiError, getErrorMessage } from '@/lib/api-error';
-import { api } from '@/services/api';
-import { contactSchema, type ContactInput } from '@/validators/contact';
+import {
+    contactSchema,
+    ENQUIRY_CATEGORIES,
+    ENQUIRY_COUNTRIES,
+    type ContactInput,
+} from '@/validators/contact';
 
-/**
- * Reference implementation for forms in this codebase: React Hook Form for
- * state, Zod for validation, TanStack Query for the request.
- *
- * Copy this shape for new forms — particularly the server-error handling,
- * which is the part most often left out.
- */
+const toOptions = (values: readonly string[]) => values.map((v) => ({ value: v, label: v }));
+
 export function ContactForm() {
     const {
         register,
@@ -29,24 +31,23 @@ export function ContactForm() {
         formState: { errors, isSubmitting, isSubmitSuccessful },
     } = useForm<ContactInput>({
         resolver: zodResolver(contactSchema),
-        /* Validate on blur, then re-validate on change once a field has already
-           errored. Validating on every keystroke from the start shouts at
-           people while they're still typing. */
         mode: 'onBlur',
         reValidateMode: 'onChange',
-        defaultValues: { name: '', email: '', subject: '', message: '' },
+        defaultValues: {
+            fullName: '',
+            company: '',
+            email: '',
+            phone: '',
+            country: undefined,
+            category: undefined,
+            message: '',
+        },
     });
 
     const mutation = useMutation({
         mutationFn: (values: ContactInput) => api.post<void>('/contact', values),
         onSuccess: () => reset(),
         onError: (error) => {
-            /**
-             * The server validates too, and it may know things the client
-             * can't (a blocklisted domain, a duplicate). Replay its per-field
-             * messages onto the matching inputs so they appear in context
-             * rather than as one opaque banner.
-             */
             if (error instanceof ApiError && error.fieldErrors) {
                 for (const [field, messages] of Object.entries(error.fieldErrors)) {
                     if (field in contactSchema.shape && messages[0]) {
@@ -62,61 +63,88 @@ export function ContactForm() {
 
     const onSubmit = handleSubmit((values) => mutation.mutateAsync(values).catch(() => {}));
 
-    /* Only surface the banner for failures that aren't already shown per-field. */
     const showFormError =
         mutation.isError &&
         !(mutation.error instanceof ApiError && mutation.error.isValidationError);
 
     return (
         <form onSubmit={onSubmit} noValidate className="flex w-full flex-col gap-4">
-            {/* `noValidate` disables the browser's own bubbles so Zod's messages
-                are the single source of truth — two validation systems
-                disagreeing is worse than one. */}
-
             {isSubmitSuccessful && mutation.isSuccess ? (
                 <Alert variant="success">
-                    <AlertTitle>Message sent</AlertTitle>
-                    <AlertDescription>We&apos;ll get back to you shortly.</AlertDescription>
+                    <AlertTitle>Enquiry received</AlertTitle>
+                    <AlertDescription>
+                        Our technical team will respond within one business day.
+                    </AlertDescription>
                 </Alert>
             ) : null}
 
             {showFormError ? (
                 <Alert variant="destructive">
-                    <AlertTitle>Couldn&apos;t send your message</AlertTitle>
-                    <AlertDescription>{getErrorMessage(mutation.error)}</AlertDescription>
+                    <AlertTitle>Couldn&apos;t send your enquiry</AlertTitle>
+                    <AlertDescription>
+                        {getErrorMessage(mutation.error)}{' '}
+                        <a href={`mailto:${siteConfig.email}`} className="font-semibold underline">
+                            {siteConfig.email}
+                        </a>
+                    </AlertDescription>
                 </Alert>
             ) : null}
 
             <div className="grid gap-4 sm:grid-cols-2">
                 <Input
-                    label="Name"
+                    label="Full name"
                     autoComplete="name"
-                    placeholder="Ada Lovelace"
-                    error={errors.name?.message}
-                    {...register('name')}
+                    placeholder="Ada Okonkwo"
+                    error={errors.fullName?.message}
+                    {...register('fullName')}
                 />
                 <Input
-                    label="Email"
+                    label="Company name"
+                    autoComplete="organization"
+                    placeholder="Acme Industrial Ltd"
+                    error={errors.company?.message}
+                    {...register('company')}
+                />
+                <Input
+                    label="Business email"
                     type="email"
                     autoComplete="email"
-                    placeholder="ada@example.com"
+                    placeholder="ada@acme.com"
                     error={errors.email?.message}
                     {...register('email')}
                 />
+                <Input
+                    label="Phone number"
+                    type="tel"
+                    autoComplete="tel"
+                    placeholder="+234 000 000 0000"
+                    description="Optional."
+                    error={errors.phone?.message}
+                    {...register('phone')}
+                />
+                <Select
+                    label="Destination country"
+                    placeholder="Select a country"
+                    defaultValue=""
+                    options={toOptions(ENQUIRY_COUNTRIES)}
+                    error={errors.country?.message}
+                    {...register('country')}
+                />
+                <Select
+                    label="Product category"
+                    placeholder="Select a category"
+                    defaultValue=""
+                    options={toOptions(ENQUIRY_CATEGORIES)}
+                    error={errors.category?.message}
+                    {...register('category')}
+                />
             </div>
 
-            <Input
-                label="Subject"
-                placeholder="How can we help?"
-                error={errors.subject?.message}
-                {...register('subject')}
-            />
-
             <Textarea
-                label="Message"
-                rows={5}
-                placeholder="Tell us a bit about your project…"
-                description="At least 20 characters."
+                label="Message / specifications"
+                rows={6}
+                placeholder="Part numbers, volumes, grades, delivery window…"
+                description="At least 20 characters. Include quantities and destination port where you can."
                 error={errors.message?.message}
                 {...register('message')}
             />
@@ -125,11 +153,11 @@ export function ContactForm() {
                 type="submit"
                 size="lg"
                 isLoading={isSubmitting || mutation.isPending}
-                loadingLabel="Sending your message"
+                loadingLabel="Sending your enquiry"
                 rightIcon={<SendIcon />}
                 className="sm:w-fit sm:self-end"
             >
-                Send message
+                Submit enquiry
             </Button>
         </form>
     );

@@ -8,19 +8,9 @@ export const alt = `${siteConfig.name} — ${siteConfig.description}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-/* The scrim navy and Primary Blue, spelled out: this renders outside the DOM,
-   so the CSS custom properties in tokens.css aren't available here. */
 const SCRIM = '#00122b';
 const BLUE = '#3da5f5';
 
-/**
- * Social share card. Generated at build time and cached, so it costs nothing at
- * request time.
- *
- * Satori (which backs ImageResponse) supports a subset of CSS: every element
- * needs an explicit `display`, and there's no cascade — styles are set inline
- * per node.
- */
 export default async function Image() {
     const [regular, extraBold] = await Promise.all([
         readFile(join(process.cwd(), 'src/assets/fonts/Manrope-Regular.ttf')),

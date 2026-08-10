@@ -24,11 +24,6 @@ export function Button({
 }: ButtonProps) {
     const isDisabled = disabled || isLoading;
 
-    /**
-     * The `data-icon` wrappers aren't decoration — `buttonVariants` keys its
-     * asymmetric padding off them (`has-data-[icon=inline-start]:pl-2`), so an
-     * icon sits closer to the edge than a text label would.
-     */
     const decorate = (inner: ReactNode) => (
         <>
             {isLoading ? (
@@ -58,18 +53,11 @@ export function Button({
     };
 
     if (asChild) {
-        /**
-         * Slot merges props onto the child rather than rendering a wrapper, so
-         * the icons have to be cloned *into* the child — returning a fragment
-         * here would hand Slot more than one child and throw.
-         */
         const child = Children.only(children) as ReactElement<{ children?: ReactNode }>;
 
         return (
             <Slot.Root
                 {...sharedProps}
-                /* The child may be an anchor, which has no `disabled`. Fall back
-                   to the ARIA equivalent plus a class that kills interaction. */
                 aria-disabled={isDisabled || undefined}
                 data-disabled={isDisabled || undefined}
                 className={cn(
@@ -84,18 +72,7 @@ export function Button({
     }
 
     return (
-        <button
-            {...sharedProps}
-            /**
-             * Defaults to "button", not the HTML default of "submit". A button
-             * inside a form submitting by accident is a far more common bug
-             * than a missing type — the forms here pass `type="submit"`
-             * explicitly.
-             */
-            type={type ?? 'button'}
-            disabled={isDisabled}
-            {...props}
-        >
+        <button {...sharedProps} type={type ?? 'button'} disabled={isDisabled} {...props}>
             {decorate(children)}
         </button>
     );

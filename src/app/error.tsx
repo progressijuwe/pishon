@@ -11,14 +11,6 @@ import { Button } from '@/components/ui/Button';
 import { isDevelopment } from '@/config/env';
 import { ROUTES } from '@/constants/routes';
 
-/**
- * Route-level error boundary. Must be a Client Component — React needs to catch
- * the error during render on the client.
- *
- * Rendered inside the root layout under the `overlay` header, so it uses the
- * same full-viewport `--scrim` band as `not-found`: on a light background the
- * header's white brand mark would be invisible.
- */
 export default function Error({
     error,
     reset,
@@ -27,14 +19,11 @@ export default function Error({
     reset: () => void;
 }) {
     useEffect(() => {
-        /* Replace with your error reporter (Sentry, etc.). `digest` is the
-           server-side identifier Next.js logs, which is how you correlate this
-           with the stack trace the user never sees. */
         console.error(error);
     }, [error]);
 
     return (
-        <section className="bg-scrim relative flex min-h-dvh items-center overflow-hidden text-white">
+        <section className="bg-scrim on-scrim relative flex min-h-dvh items-center overflow-hidden text-white">
             <div
                 aria-hidden="true"
                 className="from-destructive absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] to-transparent opacity-10"
@@ -61,8 +50,6 @@ export default function Error({
                         </Text>
                     </Reveal>
 
-                    {/* The raw message can leak internals, so it's dev-only. In
-                        production the digest is all the user needs to quote. */}
                     {isDevelopment ? (
                         <pre className="text-caption mb-12 max-w-full overflow-x-auto rounded-lg border border-white/10 bg-white/5 p-4 text-left">
                             {error.message}

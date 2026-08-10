@@ -16,11 +16,6 @@ export interface ProcessTimelineProps {
     surface?: 'none' | 'alt';
 }
 
-/**
- * A numbered sequence along a horizontal rail. The rail scrolls rather than
- * wrapping so the order reads unambiguously, and it's an `<ol>` underneath so
- * the sequence survives without the visual rail.
- */
 export function ProcessTimeline({
     title,
     description,
@@ -46,10 +41,6 @@ export function ProcessTimeline({
                         className="bg-border absolute top-8 right-0 left-0 hidden h-0.5 md:block"
                     />
 
-                    {/* Revealed as one block rather than per step: a step scrolled
-                        out of the rail horizontally never intersects the viewport,
-                        so a per-step observer leaves it blank until dragged into
-                        view. */}
                     <Reveal>
                         <ol className="flex snap-x scrollbar-none gap-12 overflow-x-auto pb-12">
                             {steps.map((step, index) => (

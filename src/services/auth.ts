@@ -9,10 +9,6 @@ export interface AuthSession {
     accessToken: string;
 }
 
-/**
- * Auth endpoints. These own the token side effect deliberately — if callers
- * had to remember `setToken` after every login, one of them eventually won't.
- */
 export const authService = {
     async login(input: LoginInput): Promise<AuthSession> {
         const session = await api.post<AuthSession>('/auth/login', input);
@@ -30,8 +26,6 @@ export const authService = {
         try {
             await api.post<void>('/auth/logout');
         } finally {
-            /* Clear locally even if the server call fails — the user asked to
-               sign out, and a failed request shouldn't leave them signed in. */
             clearToken();
         }
     },

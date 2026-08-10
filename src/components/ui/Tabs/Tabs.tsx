@@ -5,13 +5,6 @@ import type { ComponentProps } from 'react';
 
 import { cn } from '@/lib/utils';
 
-/**
- * Tabs, built on Radix Tabs.
- *
- * Follows the WAI-ARIA tabs pattern: arrow keys move between tabs, Home/End
- * jump to the ends, and only the active tab is in the tab order — so Tab moves
- * out of the tablist into the panel rather than through every tab.
- */
 export const Tabs = TabsPrimitive.Root;
 
 export function TabsList({ className, ...props }: ComponentProps<typeof TabsPrimitive.List>) {

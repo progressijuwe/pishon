@@ -14,28 +14,13 @@ const META = {
     system: { Icon: MonitorIcon, label: 'System' },
 } as const;
 
-/**
- * Cycles light → dark → system.
- *
- * The theme isn't known until after hydration — it lives in `localStorage` —
- * so before `mounted` we render a same-sized disabled placeholder rather than
- * `null`. Returning `null` would pop the header layout when it appears, and
- * rendering a guessed icon would flash the wrong one.
- */
 export function ThemeToggle() {
     const { theme, setTheme } = useTheme();
     const mounted = useMounted();
 
     if (!mounted) {
         return (
-            <Button
-                variant="ghost"
-                size="icon"
-                disabled
-                aria-hidden="true"
-                /* Placeholder only — kept out of the tab order and the a11y tree. */
-                tabIndex={-1}
-            >
+            <Button variant="ghost" size="icon" disabled aria-hidden="true" tabIndex={-1}>
                 <SunIcon />
             </Button>
         );
@@ -53,8 +38,6 @@ export function ThemeToggle() {
             variant="ghost"
             size="icon"
             onClick={() => setTheme(next)}
-            /* Names the current state and the result of activating, so the
-               control is meaningful without sight of the icon. */
             aria-label={`Theme: ${label}. Switch to ${META[next].label.toLowerCase()}.`}
             title={`Theme: ${label}`}
         >

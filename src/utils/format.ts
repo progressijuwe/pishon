@@ -1,13 +1,3 @@
-/**
- * Formatting helpers.
- *
- * NOTE: `Intl` formats using the *runtime's* locale, which differs between your
- * server and your user's browser. Passing an explicit `locale` keeps server and
- * client output identical and avoids hydration mismatches. See
- * `node_modules/next/dist/docs/01-app/02-guides/preventing-flash-before-hydration.md`
- * if you need genuinely user-local formatting.
- */
-
 const DEFAULT_LOCALE = 'en-US';
 
 export function formatDate(
@@ -34,14 +24,12 @@ export function formatNumber(
     return new Intl.NumberFormat(locale, options).format(value);
 }
 
-/** "1.2K", "3.4M" — for stat tiles and counters. */
 export function formatCompact(value: number, locale = DEFAULT_LOCALE): string {
     return new Intl.NumberFormat(locale, { notation: 'compact', maximumFractionDigits: 1 }).format(
         value,
     );
 }
 
-/** "3 days ago", "in 2 hours". */
 export function formatRelativeTime(value: Date | string | number, locale = DEFAULT_LOCALE): string {
     const date = value instanceof Date ? value : new Date(value);
     if (Number.isNaN(date.getTime())) return '';

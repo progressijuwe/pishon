@@ -7,16 +7,9 @@ export interface Disclosure {
     open: () => void;
     close: () => void;
     toggle: () => void;
-    /** Matches the `onOpenChange` signature Radix components expect. */
     setOpen: (open: boolean) => void;
 }
 
-/**
- * Open/closed state for modals, drawers, popovers and menus.
- *
- * Every callback is stable, so passing them to memoised children doesn't defeat
- * the memo.
- */
 export function useDisclosure(initial = false): Disclosure {
     const [isOpen, setOpen] = useState(initial);
 
