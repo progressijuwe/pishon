@@ -11,14 +11,9 @@ const SOCIAL_LINKS = [
     { label: 'Call us', href: `tel:${siteConfig.phone.replace(/\s/g, '')}`, Icon: PhoneIcon },
 ] as const;
 
-/**
- * Inverted to `--scrim`, which is fixed across themes — everything layered on it
- * is translucent white and would disappear against a surface that lightened in
- * dark mode.
- */
 export function Footer() {
     return (
-        <footer className="bg-scrim mt-auto text-white">
+        <footer className="bg-scrim on-scrim mt-auto text-white">
             <Container>
                 <div className="grid grid-cols-1 gap-12 py-20 sm:grid-cols-2 lg:grid-cols-6">
                     <div className="lg:col-span-2">

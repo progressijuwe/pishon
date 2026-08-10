@@ -43,11 +43,9 @@ export function ImageTiles({ title, description, items, surface = 'none' }: Imag
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
 
-                                {/* Opaque at the base, clear at the top — the caption
-                                    sits on solid colour whatever the photograph does. */}
                                 <div
                                     aria-hidden="true"
-                                    className="from-scrim absolute inset-0 bg-linear-to-t via-transparent to-transparent"
+                                    className="from-scrim via-scrim/70 absolute inset-0 bg-linear-to-t via-45% to-transparent to-75%"
                                 />
 
                                 <div className="absolute inset-x-0 bottom-0 p-6 text-white transition-transform duration-500 group-hover:-translate-y-2">

@@ -11,7 +11,6 @@ export interface TextareaProps extends Omit<ComponentProps<'textarea'>, 'id'> {
     id?: string;
 }
 
-/** Multi-line input. Shares Input's labelling and error semantics. */
 export function Textarea({
     className,
     label,
@@ -27,10 +26,6 @@ export function Textarea({
     const descriptionId = `${id}-description`;
     const errorId = `${id}-error`;
 
-    /* The error replaces the description in the markup below, so the id list
-       has to match what is actually rendered — pointing `aria-describedby` at
-       an element that doesn't exist leaves screen readers with nothing to
-       announce. */
     const showDescription = Boolean(description) && !error;
 
     const describedBy =
@@ -53,11 +48,10 @@ export function Textarea({
                 aria-invalid={error ? true : undefined}
                 aria-describedby={describedBy}
                 className={cn(
-                    'border-input bg-background text-foreground placeholder:text-muted-foreground flex w-full rounded-lg border px-3 py-2 text-sm shadow-sm transition-colors',
+                    'border-input bg-background text-foreground placeholder:text-muted-foreground flex w-full rounded-lg border px-3 py-2 text-base shadow-sm transition-colors md:text-sm',
                     'focus-visible:border-ring focus-visible:ring-ring/50 outline-none focus-visible:ring-[3px]',
                     'disabled:cursor-not-allowed disabled:opacity-50',
                     'aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
-                    /* Vertical only — horizontal resize breaks page layout. */
                     'resize-y',
                     className,
                 )}

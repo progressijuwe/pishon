@@ -12,8 +12,6 @@ const badgeVariants = cva(
                 default: 'bg-primary text-primary-foreground border-transparent',
                 secondary: 'bg-secondary text-secondary-foreground border-transparent',
                 outline: 'text-foreground border-border',
-                /* Tinted rather than solid: badges are read at a glance and a
-                   wall of saturated pills is noisy. */
                 success: 'bg-success/12 text-success border-success/20',
                 warning: 'bg-warning/15 text-warning border-warning/25',
                 destructive: 'bg-destructive/12 text-destructive border-destructive/20',
@@ -30,10 +28,6 @@ export interface BadgeProps extends ComponentProps<'span'>, VariantProps<typeof 
     asChild?: boolean;
 }
 
-/**
- * Status pill. Purely visual — colour alone isn't an accessible signal, so the
- * text inside must carry the meaning ("Failed", not a bare red dot).
- */
 export function Badge({ className, variant, asChild = false, ...props }: BadgeProps) {
     const Comp = asChild ? Slot.Root : 'span';
 

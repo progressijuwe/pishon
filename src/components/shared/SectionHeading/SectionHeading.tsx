@@ -9,12 +9,6 @@ export interface SectionHeadingProps {
     title: string;
     description?: string;
     align?: 'start' | 'center';
-    /**
-     * Right-hand slot — a "view all" button, or a paragraph balancing the
-     * title. Supplying it switches the block to a split row on desktop and
-     * forces left alignment, since a centred title beside a right-hand action
-     * reads as a mistake.
-     */
     aside?: ReactNode;
     as?: 'h2' | 'h3';
 }

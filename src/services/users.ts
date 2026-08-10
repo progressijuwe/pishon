@@ -14,10 +14,6 @@ export interface User {
 export type UpdateUserInput = Partial<Pick<User, 'name' | 'email' | 'avatarUrl'>>;
 
 export const usersService = {
-    /**
-     * Paginated, so it reads the envelope directly rather than going through
-     * `api.get` — the `meta` block would be discarded by the unwrapper.
-     */
     async list(params?: ListParams): Promise<PaginatedResponse<User>> {
         const response = await apiClient.get<PaginatedResponse<User>>('/users', { params });
         return response.data;

@@ -3,24 +3,21 @@ import Link from 'next/link';
 import { Container } from '@/components/shared/Container';
 import { Logo } from '@/components/shared/Logo';
 import { Button } from '@/components/ui/Button';
-import { mainNav } from '@/config/site';
+import { mainNav, primaryCta } from '@/config/site';
 import type { NavItem } from '@/types';
 
 import { ThemeToggle } from '../ThemeToggle';
 import { HeaderShell, type HeaderVariant } from './HeaderShell';
 import { NavMenu } from './NavMenu';
+import { actionArrow } from '@/lib/action-arrow';
 
 export interface HeaderProps {
-    /** `overlay` floats over a hero and needs a dark first section; `solid` is sticky and opaque. */
     variant?: HeaderVariant;
     items?: readonly NavItem[];
     cta?: { label: string; href: string };
 }
 
-/**
- * The bar carries no links at any width — all navigation lives in `NavMenu`.
- */
-export function Header({ variant = 'overlay', items = mainNav, cta }: HeaderProps) {
+export function Header({ variant = 'overlay', items = mainNav, cta = primaryCta }: HeaderProps) {
     return (
         <HeaderShell variant={variant}>
             <Container>
@@ -32,7 +29,12 @@ export function Header({ variant = 'overlay', items = mainNav, cta }: HeaderProp
                             <ThemeToggle />
                         </span>
                         {cta ? (
-                            <Button variant="secondary" asChild className="hidden sm:inline-flex">
+                            <Button
+                                variant="secondary"
+                                asChild
+                                className="hidden sm:inline-flex"
+                                rightIcon={actionArrow(cta.href)}
+                            >
                                 <Link href={cta.href}>{cta.label}</Link>
                             </Button>
                         ) : null}

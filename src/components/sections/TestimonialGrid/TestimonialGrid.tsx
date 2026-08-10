@@ -10,7 +10,6 @@ export interface Testimonial {
     quote: string;
     author: string;
     role: string;
-    /** Falls back to the author's initials. */
     initials?: string;
 }
 

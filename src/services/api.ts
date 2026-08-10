@@ -9,21 +9,13 @@ import { ApiError } from '@/lib/api-error';
 import { clearToken, getToken } from '@/lib/token-store';
 import type { ApiErrorBody, ApiResponse } from '@/types';
 
-/**
- * The one configured axios instance. Import `api` (below) in feature code;
- * reach for `apiClient` only when you need something the helpers don't cover,
- * such as upload progress or a custom `signal`.
- */
 export const apiClient = axios.create({
     baseURL: env.NEXT_PUBLIC_API_URL,
     timeout: 30_000,
     headers: { 'Content-Type': 'application/json' },
-    /* Flip to `true` when the backend authenticates with httpOnly cookies —
-       it also requires a non-wildcard CORS origin server-side. */
     withCredentials: false,
 });
 
-/** Attach the bearer token, unless a caller has already set its own header. */
 apiClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     const token = getToken();
 
@@ -34,16 +26,9 @@ apiClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     return config;
 });
 
-/**
- * Normalise every failure into `ApiError`. This is the only place that knows
- * about axios error shapes — components, hooks and services downstream just
- * catch `ApiError`.
- */
 apiClient.interceptors.response.use(
     (response) => response,
     (error: AxiosError<ApiErrorBody>) => {
-        /* Cancellation is intentional (unmount, new keystroke). Let it through
-           untouched so TanStack Query can tell it apart from a real failure. */
         if (axios.isCancel(error)) {
             return Promise.reject(error);
         }
@@ -63,9 +48,6 @@ apiClient.interceptors.response.use(
 
         const body = response.data;
 
-        /* Token is gone or rejected. Drop it so the next request doesn't retry
-           with a credential we already know is bad. Redirecting is left to the
-           UI — this module must stay usable during SSR. */
         if (response.status === 401) {
             clearToken();
         }
@@ -91,11 +73,6 @@ function fallbackMessage(status: number): string {
     return 'Something went wrong. Please try again.';
 }
 
-/**
- * Unwrap the `{ data: … }` envelope when the backend uses one, and pass the
- * payload straight through when it doesn't. Keeps `ApiResponse` out of every
- * call site's type signature.
- */
 function unwrap<T>(payload: ApiResponse<T> | T): T {
     if (payload !== null && typeof payload === 'object' && 'data' in payload) {
         return (payload as ApiResponse<T>).data;
@@ -109,11 +86,6 @@ async function request<T>(config: AxiosRequestConfig): Promise<T> {
     return unwrap<T>(response.data);
 }
 
-/**
- * Typed request helpers. `T` is the shape you expect *after* unwrapping, so
- * `api.get<User[]>('/users')` resolves to `User[]` whether or not the server
- * wraps its responses.
- */
 export const api = {
     get: <T>(url: string, config?: AxiosRequestConfig) =>
         request<T>({ ...config, url, method: 'GET' }),

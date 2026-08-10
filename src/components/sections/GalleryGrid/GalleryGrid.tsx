@@ -10,7 +10,6 @@ import { cn } from '@/lib/utils';
 export interface GalleryItem {
     image: StaticImageData;
     alt: string;
-    /** Claim a second column and/or row to break the even grid. */
     wide?: boolean;
     tall?: boolean;
 }

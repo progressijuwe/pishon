@@ -1,28 +1,6 @@
-/**
- * Design tokens.
- *
- * Values come from the "Industrial Authority" design system (Google Stitch,
- * project `Pishon Parts Design System`), stored as the hex the system ships.
- *
- * Colour is declared twice — once per theme — as raw custom properties, then
- * mapped into Tailwind's `--color-*` namespace with `@theme inline`. `inline`
- * matters here: it makes utilities emit `var(--primary)` rather than a resolved
- * value, so one class follows whichever theme is active.
- *
- * Opacity utilities (`bg-primary/20`) still work — Tailwind resolves them with
- * `color-mix()` — but hex isn't perceptually uniform, so check a swatch by eye
- * rather than trusting that `/20` of two different colours reads as equal
- * weight.
- *
- * Never hardcode a colour in a component. If a shade is missing, add it here in
- * both blocks first.
- */
-
 :root {
-    /* Stitch containers are 16px; `lg` is the card radius the system specifies. */
     --radius: 1rem;
 
-    /* Surfaces — canvas is Neutral #F8FAFC, cards sit on it in Surface White. */
     --background: #f8fafc;
     --foreground: #0f172a;
     --card: #ffffff;
@@ -30,68 +8,43 @@
     --popover: #ffffff;
     --popover-foreground: #0f172a;
 
-    /* Brand. Primary Navy carries structural weight (nav, footers, headings);
-       Primary Blue is reserved for interactive elements only. */
     --primary: #0f2747;
     --primary-foreground: #ffffff;
-    --secondary: #3da5f5;
-    /**
-     * Stitch specifies white type on Primary Blue, but that measures 2.66:1 —
-     * under AA for body text (4.5) and under the 3.0 floor for large text and
-     * UI. Navy on the same blue is 5.64:1, so the pairing holds the promise
-     * every `-foreground` token makes here. If the brand insists on white,
-     * change this one line and darken `--secondary` to compensate.
-     */
-    --secondary-foreground: #0f2747;
 
-    /* Neutrals. `accent` stays neutral on purpose — shadcn drives menu/list
-       hover states from it, and Accent Gold is a sparing signature colour, not
-       a hover. Gold lives in its own token below. */
+    --secondary: #00639c;
+    --secondary-foreground: #ffffff;
+
     --muted: #eef4f8;
     --muted-foreground: #475569;
     --accent: #eef4f8;
     --accent-foreground: #0f2747;
 
-    /* Accent Gold — the "premium signature". Certifications, stat highlights,
-       quality badges. Used sparingly, never as a surface. */
     --gold: #d6a85a;
     --gold-foreground: #0f2747;
 
-    /**
-     * Scrim over full-bleed photography, so white type stays legible on top of
-     * it. The system's deepest navy — darker than `--primary`, which has to
-     * stay readable as a surface colour.
-     *
-     * Deliberately identical in both themes: this sits on a photograph, not on
-     * the page, and lightening it in dark mode would strand the white text it
-     * exists to support.
-     */
     --scrim: #00122b;
 
-    /* Feedback */
-    --destructive: #dc2626;
+    --scrim-accent: #4bafff;
+
+    --destructive: #b91c1c;
     --destructive-foreground: #ffffff;
-    --success: #16a34a;
+    --success: #12662f;
     --success-foreground: #ffffff;
-    --warning: #d6a85a;
-    --warning-foreground: #0f2747;
-    --info: #3da5f5;
-    /* Same Primary Blue, same contrast reasoning as `--secondary-foreground`. */
-    --info-foreground: #0f2747;
+    --warning: #7d5c1d;
+    --warning-foreground: #ffffff;
+    --info: #00639c;
+    --info-foreground: #ffffff;
 
-    /* Lines and focus. Focus ring is Primary Blue, per the form-control spec. */
     --border: #cbd5e1;
-    --input: #cbd5e1;
-    --ring: #3da5f5;
+    --input: #7c8ea6;
+    --ring: #00639c;
 
-    /* Data visualisation — walks the brand family navy → blue → gold. */
     --chart-1: #0f2747;
     --chart-2: #00639c;
     --chart-3: #3da5f5;
     --chart-4: #d6a85a;
     --chart-5: #b1873c;
 
-    /* Sidebar (dashboard shells) */
     --sidebar: #ffffff;
     --sidebar-foreground: #0f172a;
     --sidebar-primary: #0f2747;
@@ -102,13 +55,6 @@
     --sidebar-ring: #3da5f5;
 }
 
-/**
- * Stitch ships this system as light-only (`colorMode: LIGHT`). The dark palette
- * below is derived from the `inverse-*` and `*-fixed-dim` values it does
- * publish, so the hues stay in the family: canvas drops to a deep navy rather
- * than neutral black, and Primary Blue lifts to `secondary-fixed-dim` so it
- * keeps carrying interaction on a dark ground.
- */
 .dark {
     --background: #0b1220;
     --foreground: #eff1f3;
@@ -117,23 +63,21 @@
     --popover: #111c2e;
     --popover-foreground: #eff1f3;
 
-    /* Navy can't read as "primary" against a navy canvas, so the roles inverse:
-       the light tint becomes the primary surface and takes dark type. */
     --primary: #b2c7f0;
     --primary-foreground: #011b3b;
     --secondary: #98cbff;
     --secondary-foreground: #011b3b;
 
     --muted: #2d3133;
-    --muted-foreground: #798fb4;
+    --muted-foreground: #94a9cb;
     --accent: #2d3133;
     --accent-foreground: #eff1f3;
 
     --gold: #efbf6e;
     --gold-foreground: #011b3b;
 
-    /* Unchanged from light on purpose — see the note in `:root`. */
     --scrim: #00122b;
+    --scrim-accent: #4bafff;
 
     --destructive: #ff6467;
     --destructive-foreground: #0b1220;
@@ -144,9 +88,8 @@
     --info: #98cbff;
     --info-foreground: #011b3b;
 
-    /* Hairlines stay translucent white so they read against any dark surface. */
     --border: #ffffff1f;
-    --input: #ffffff29;
+    --input: #ffffff66;
     --ring: #98cbff;
 
     --chart-1: #d5e3ff;
@@ -165,11 +108,6 @@
     --sidebar-ring: #98cbff;
 }
 
-/**
- * Theme-dependent tokens, resolved at use-site so they track light/dark.
- * `--font-manrope` / `--font-geist-mono` are injected by `next/font` in the
- * root layout. The system specifies Manrope exclusively for display and prose.
- */
 @theme inline {
     --font-sans: var(--font-manrope);
     --font-mono: var(--font-geist-mono);
@@ -196,6 +134,7 @@
     --color-gold-foreground: var(--gold-foreground);
 
     --color-scrim: var(--scrim);
+    --color-scrim-accent: var(--scrim-accent);
 
     --color-destructive: var(--destructive);
     --color-destructive-foreground: var(--destructive-foreground);
@@ -225,10 +164,6 @@
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
 
-    /* Radius derives from one knob: change `--radius` to restyle the whole app.
-       At 1rem this lands on the system's 16px containers (`rounded-lg`) and
-       ~12px form controls (`rounded-md`). Buttons and chips are pills — reach
-       for `rounded-full`, which is outside this scale. */
     --radius-sm: calc(var(--radius) * 0.6);
     --radius-md: calc(var(--radius) * 0.8);
     --radius-lg: var(--radius);
@@ -238,28 +173,7 @@
     --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/**
- * Theme-independent scales. Static values, so plain `@theme` is correct —
- * Tailwind inlines them and drops whatever goes unused.
- */
 @theme {
-    /**
-     * Typography. Semantic names, not t-shirt sizes: `text-h2` states intent,
-     * `text-3xl` states a measurement. Pair with Heading's `as` for semantics.
-     *
-     * The headline sizes are fluid, interpolating between the system's mobile
-     * and desktop figures (Display 48→72, H1 40→56, H2 32→44, H3 28→36, H4
-     * 20→24) across a 375px–1280px viewport. The design specifies both ends;
-     * pinning only the desktop value is what used to flatten H1, H2 and H3 into
-     * the same size on a phone and force `md:text-*` patches at every call site.
-     *
-     * Each clamp is `rem + vw`, never bare `vw`. The rem term keeps the type
-     * responding to the reader's browser font size, which a pure-viewport
-     * formula would ignore.
-     *
-     * Body, small and caption stay fixed — prose has an optimal size, and 18px
-     * at 1.7 is the "controlled density" the system asks for.
-     */
     --text-display: clamp(3rem, 2.378rem + 2.653vw, 4.5rem);
     --text-display--line-height: 1.1;
     --text-display--letter-spacing: -0.02em;
@@ -277,8 +191,6 @@
     --text-h3--line-height: 1.3;
     --text-h3--font-weight: 600;
 
-    /* Not in the Stitch scale — interpolated between H3 and Body LG so card
-       titles have a step to land on. */
     --text-h4: clamp(1.25rem, 1.146rem + 0.442vw, 1.5rem);
     --text-h4--line-height: 1.35;
     --text-h4--font-weight: 600;
@@ -292,39 +204,18 @@
     --text-caption: 0.875rem;
     --text-caption--line-height: 1.5;
 
-    /* Button and chip labels: 16px semi-bold, slight positive tracking. */
     --text-label: 1rem;
     --text-label--line-height: 1;
     --text-label--letter-spacing: 0.02em;
     --text-label--font-weight: 600;
 
-    /**
-     * DO NOT add t-shirt-named `--spacing-*` tokens here.
-     *
-     * `--spacing-lg`, `--spacing-2xl` and friends look harmless, but the
-     * sizing utilities (`max-w-*`, `w-*`, `min-w-*`, `basis-*`) resolve
-     * against BOTH the spacing scale and the container scale — and spacing
-     * wins. Defining `--spacing-lg: 2.5rem` silently turns `max-w-lg` from
-     * 32rem into 2.5rem, which reads as a mysteriously narrow column rather
-     * than an obvious error.
-     *
-     * The system's 8px rhythm and its 120px/160px section padding live in
-     * `sectionVariants` instead, where they can't shadow anything. Use
-     * Tailwind's numeric spacing scale (`p-4`, `gap-6`) everywhere else.
-     */
-
-    /* Prose measure — the system caps paragraphs at ~720px to keep line length
-       comfortable in white-paper sections. */
     --container-prose: 45rem;
 
-    /* Shadows. Ambient and navy-tinted rather than neutral black, so elevation
-       reads as tonal layering on the light canvas. */
     --shadow-sm: 0 1px 2px 0 #0f27470a, 0 2px 4px -2px #0f274705;
     --shadow-md: 0 4px 12px -2px #0f27470f, 0 2px 4px -2px #0f27470a;
     --shadow-lg: 0 12px 28px -6px #0f27471a, 0 4px 8px -4px #0f27470f;
     --shadow-xl: 0 24px 48px -12px #0f274724, 0 8px 16px -8px #0f274714;
 
-    /* Motion */
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }

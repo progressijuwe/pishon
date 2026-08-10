@@ -6,8 +6,6 @@ import type { PolymorphicProps } from '@/types';
 
 const containerVariants = cva('mx-auto w-full px-4 sm:px-6 lg:px-8', {
     variants: {
-        /* Measured in max content width, not viewport. `prose` is capped near
-           70 characters, which is the readable line length for body copy. */
         size: {
             sm: 'max-w-3xl',
             md: 'max-w-5xl',
@@ -26,11 +24,6 @@ export type ContainerProps<T extends ElementType = 'div'> = PolymorphicProps<
     VariantProps<typeof containerVariants>
 >;
 
-/**
- * Horizontal gutter and max-width. Pair with Section, which owns the vertical
- * rhythm — keeping the two axes in separate components is what lets a
- * full-bleed background sit inside a normally-padded section.
- */
 export function Container<T extends ElementType = 'div'>({
     as,
     size,

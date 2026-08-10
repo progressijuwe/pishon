@@ -2,13 +2,6 @@ import type { ComponentProps } from 'react';
 
 import { cn } from '@/lib/utils';
 
-/**
- * Card is a set of composable parts rather than one component with a dozen
- * props. Use only the pieces you need — a card with just `CardContent` is
- * perfectly valid.
- *
- * These are Server Components: no hooks, no `'use client'`. Keep them that way.
- */
 export function Card({ className, ...props }: ComponentProps<'div'>) {
     return (
         <div
@@ -32,11 +25,6 @@ export function CardHeader({ className, ...props }: ComponentProps<'div'>) {
     );
 }
 
-/**
- * Renders an `<h3>` by default. If the card sits under an `<h2>` this is the
- * right level; otherwise pass a different element via `asChild`-style
- * composition or override with your own heading to keep the outline correct.
- */
 export function CardTitle({ className, ...props }: ComponentProps<'h3'>) {
     return (
         <h3
@@ -58,14 +46,7 @@ export function CardDescription({ className, ...props }: ComponentProps<'p'>) {
 }
 
 export function CardContent({ className, ...props }: ComponentProps<'div'>) {
-    return (
-        <div
-            data-slot="card-content"
-            /* Sits below a header, which already supplies the top padding. */
-            className={cn('p-6 pt-0', className)}
-            {...props}
-        />
-    );
+    return <div data-slot="card-content" className={cn('p-6 pt-0', className)} {...props} />;
 }
 
 export function CardFooter({ className, ...props }: ComponentProps<'div'>) {

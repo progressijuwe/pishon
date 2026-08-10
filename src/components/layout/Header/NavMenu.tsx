@@ -15,16 +15,9 @@ import type { NavItem } from '@/types';
 
 export interface NavMenuProps {
     items: readonly NavItem[];
-    /** Call-to-action repeated at the foot of the menu. Omit to hide it. */
     cta?: { label: string; href: string };
 }
 
-/**
- * The site's only navigation surface, opened from the hamburger at every width.
- * Desktop covers the viewport and opens submenus beside the main list; mobile is
- * a side drawer and opens them beneath their parent. That behavioural difference
- * is why this branches on a media query rather than responsive classes.
- */
 export function NavMenu({ items, cta }: NavMenuProps) {
     const { isOpen, setOpen, close } = useDisclosure();
     const pathname = usePathname();
@@ -163,11 +156,11 @@ export function NavMenu({ items, cta }: NavMenuProps) {
             </DialogPrimitive.Trigger>
 
             <DialogPrimitive.Portal>
-                <DialogPrimitive.Overlay className="bg-primary/40 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 fixed inset-0 z-50 backdrop-blur-sm" />
+                <DialogPrimitive.Overlay className="bg-scrim/60 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 fixed inset-0 z-50 backdrop-blur-sm" />
 
                 <DialogPrimitive.Content
                     className={cn(
-                        'bg-primary text-primary-foreground data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col shadow-xl duration-300',
+                        'bg-scrim on-scrim data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col text-white shadow-xl duration-300',
                         isDesktop
                             ? 'data-[state=open]:slide-in-from-top data-[state=closed]:slide-out-to-top inset-x-0 top-0 h-dvh w-full'
                             : 'data-[state=open]:slide-in-from-end data-[state=closed]:slide-out-to-end inset-y-0 right-0 h-dvh w-full',
@@ -187,7 +180,7 @@ export function NavMenu({ items, cta }: NavMenuProps) {
                                     <Button
                                         variant="ghost"
                                         size="icon"
-                                        className="text-primary-foreground focus-visible:ring-ring cursor-pointer hover:bg-white/10 focus-visible:ring-[3px]"
+                                        className="focus-visible:ring-ring cursor-pointer text-white hover:bg-white/10 focus-visible:ring-[3px]"
                                         aria-label="Close menu"
                                     >
                                         <XIcon />

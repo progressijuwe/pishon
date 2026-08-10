@@ -14,7 +14,6 @@ export interface Stat {
 export interface StatGridProps {
     stats: readonly Stat[];
     columns?: 3 | 4 | 5;
-    /** `compact` drops the figure to heading size for a dense strip of numbers. */
     size?: 'display' | 'compact';
     surface?: 'none' | 'alt';
 }
@@ -25,11 +24,6 @@ const COLUMN_CLASSES = {
     5: 'grid-cols-2 md:grid-cols-5',
 } as const;
 
-/**
- * Headline figures as a definition list. `flex-col-reverse` shows the value
- * above its label while the reading order stays label-then-value for assistive
- * technology.
- */
 export function StatGrid({
     stats,
     columns = 3,

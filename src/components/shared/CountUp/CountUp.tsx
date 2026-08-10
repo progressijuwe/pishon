@@ -5,9 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { usePrefersReducedMotion } from '@/hooks';
 
 export interface CountUpProps {
-    /** The finished figure, punctuation and all — "25+", "1,200", "99.5%". */
     value: string;
-    /** Milliseconds from zero to `value`. */
     duration?: number;
     className?: string;
 }
@@ -20,7 +18,6 @@ interface ParsedValue {
     grouped: boolean;
 }
 
-/** Splits "1,200+" into its prefix, number and suffix so only the digits animate. */
 function parse(value: string): ParsedValue | null {
     const match = /^(\D*?)([\d,]+(?:\.\d+)?)(.*)$/.exec(value);
     if (!match) return null;
@@ -41,13 +38,6 @@ function parse(value: string): ParsedValue | null {
 
 const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
 
-/**
- * Counts a figure up from zero when it scrolls into view.
- *
- * The animating text is `aria-hidden` with the finished value beside it in an
- * `sr-only` span, so assistive technology reads "25+" once rather than a stream
- * of intermediate numbers. Anything unparseable renders verbatim.
- */
 export function CountUp({ value, duration = 1600, className }: CountUpProps) {
     const parsed = parse(value);
     const ref = useRef<HTMLSpanElement>(null);
@@ -56,9 +46,6 @@ export function CountUp({ value, duration = 1600, className }: CountUpProps) {
 
     useEffect(() => {
         const element = ref.current;
-        /* Re-parsed here rather than closing over the render-scoped object, so
-           the effect depends only on the string and doesn't restart on every
-           parent re-render. */
         const config = parse(value);
         if (!element || !config || prefersReducedMotion) return;
 

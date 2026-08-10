@@ -6,19 +6,12 @@ import { cn } from '@/lib/utils';
 
 export interface RevealProps {
     children: ReactNode;
-    /** Milliseconds to hold before animating — stagger siblings with this. */
     delay?: number;
     from?: 'up' | 'left' | 'right' | 'none';
     as?: ElementType;
     className?: string;
 }
 
-/**
- * Horizontal starts only apply from `md` up. A sideways offset on a full-width
- * element widens the page while it waits to animate, which shows as a stray
- * horizontal scrollbar on a phone — and the side-to-side motion only reads at
- * all once the layout is two columns. Below that, everything rises instead.
- */
 const FROM_CLASSES = {
     up: 'translate-y-8',
     left: 'translate-y-8 md:translate-y-0 md:-translate-x-8',
@@ -26,14 +19,6 @@ const FROM_CLASSES = {
     none: '',
 } as const;
 
-/**
- * Fades content in as it scrolls into view, once.
- *
- * Content starts visible and is hidden only after the observer attaches, so
- * anything rendered without JavaScript stays readable rather than stranded at
- * `opacity-0`. `prefers-reduced-motion` is handled globally in `base.css`,
- * which collapses the transition to zero.
- */
 export function Reveal({ children, delay = 0, from = 'up', as, className }: RevealProps) {
     const Component = (as ?? 'div') as ElementType;
     const ref = useRef<HTMLElement>(null);
@@ -44,9 +29,6 @@ export function Reveal({ children, delay = 0, from = 'up', as, className }: Reve
         const element = ref.current;
         if (!element) return;
 
-        /* Already scrolled past before this attached — which happens when the
-           reader scrolls during hydration. Show it outright: an observer would
-           report "not intersecting" and leave the content invisible for good. */
         if (element.getBoundingClientRect().bottom <= 0) {
             setVisible(true);
             return;
@@ -67,16 +49,6 @@ export function Reveal({ children, delay = 0, from = 'up', as, className }: Reve
             { threshold: 0.1, rootMargin: '0px 0px -80px 0px' },
         );
 
-        /**
-         * Safety net for content the observer never gets to report on.
-         *
-         * An observer only fires when a threshold is *crossed*. A jump — an
-         * anchor link, restored scroll position, hard flick on a long page —
-         * can move an element from below the fold to above it between frames
-         * without ever crossing one, so no callback runs and the content stays
-         * invisible behind the reader. This catches that case; the observer
-         * still owns the timing for anything scrolled to normally.
-         */
         const onScroll = () => {
             if (element.getBoundingClientRect().bottom <= 0) reveal();
         };

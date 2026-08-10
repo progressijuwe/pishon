@@ -9,7 +9,6 @@ import { Text } from '@/components/shared/Text';
 import { cn } from '@/lib/utils';
 
 export interface Milestone {
-    /** The year or period this entry marks. */
     year: string;
     title: string;
     description: string;
@@ -24,16 +23,6 @@ export interface MilestoneTimelineProps {
     surface?: 'none' | 'alt';
 }
 
-/**
- * A company history laid out down a vertical rail, entries alternating sides.
- *
- * Distinct from `ProcessTimeline`, which is a horizontal rail of numbered steps:
- * this is dated, unbounded in length, and pairs each entry with a photograph.
- *
- * An `<ol>` underneath — the order is the point, and it survives without the
- * rail. Below `md` the alternation collapses to a single centred column, since
- * two columns at phone width would leave neither side readable.
- */
 export function MilestoneTimeline({
     title,
     description,

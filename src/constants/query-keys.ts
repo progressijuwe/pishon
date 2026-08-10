@@ -1,13 +1,5 @@
 import type { ListParams } from '@/types';
 
-/**
- * TanStack Query cache keys, as hierarchical factories.
- *
- * The nesting is what makes invalidation precise: `queryKeys.users.all`
- * invalidates every user query, `queryKeys.users.lists()` only the lists, and
- * `queryKeys.users.detail(id)` a single record. Hand-written arrays drift and
- * silently stop matching, which shows up as a cache that won't refresh.
- */
 export const queryKeys = {
     users: {
         all: ['users'] as const,

@@ -25,18 +25,11 @@ const textVariants = cva('', {
             true: 'text-muted-foreground',
             false: '',
         },
-        /* Caps the measure for readable prose. Off by default — inside a
-           narrow column it would fight the parent's width. */
         balance: {
             true: 'text-pretty',
             false: '',
         },
     },
-    /**
-     * `align` has no default on purpose — see the note in `headingVariants`.
-     * Alignment inherits from the container so a centred block centres as a
-     * whole; pass `align` only to override it.
-     */
     defaultVariants: {
         size: 'body',
         weight: 'normal',
@@ -50,11 +43,6 @@ export type TextProps<T extends ElementType = 'p'> = PolymorphicProps<
     VariantProps<typeof textVariants>
 >;
 
-/**
- * Body copy. The counterpart to Heading: same split between the element (`as`)
- * and the visual scale (`size`), so a `<span>` can carry body styling without
- * becoming a paragraph in the accessibility tree.
- */
 export function Text<T extends ElementType = 'p'>({
     as,
     size,

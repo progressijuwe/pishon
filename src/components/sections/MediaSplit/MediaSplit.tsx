@@ -1,4 +1,4 @@
-import { ArrowRightIcon } from 'lucide-react';
+import { ArrowRightIcon, CircleCheckIcon } from 'lucide-react';
 import Image, { type StaticImageData } from 'next/image';
 import Link from 'next/link';
 
@@ -16,12 +16,11 @@ export interface MediaSplitHighlight {
 
 export interface MediaSplitProps {
     title: string;
-    /** One string per paragraph. */
     body?: readonly string[];
     image: StaticImageData;
     imageAlt: string;
     action?: { label: string; href: string };
-    /** Card overlapping the image's corner. Two-column layouts only. */
+    bullets?: readonly string[];
     highlight?: MediaSplitHighlight;
     reverse?: boolean;
     surface?: 'none' | 'alt';
@@ -33,6 +32,7 @@ export function MediaSplit({
     image,
     imageAlt,
     action,
+    bullets = [],
     highlight,
     reverse = false,
     surface = 'none',
@@ -59,10 +59,6 @@ export function MediaSplit({
                             <div
                                 className={cn(
                                     'bg-primary text-primary-foreground absolute -bottom-12 hidden max-w-70 rounded-xl p-12 lg:block',
-                                    /* Overhangs toward the column gap, never the
-                                       page edge — reversed, the media sits on
-                                       the right and `-right-12` would push the
-                                       document sideways. */
                                     reverse ? '-left-12' : '-right-12',
                                 )}
                             >
@@ -88,6 +84,20 @@ export function MediaSplit({
                                 {paragraph}
                             </Text>
                         ))}
+
+                        {bullets.length > 0 ? (
+                            <ul className="flex flex-col gap-3">
+                                {bullets.map((bullet) => (
+                                    <li key={bullet} className="flex items-center gap-3">
+                                        <CircleCheckIcon
+                                            aria-hidden="true"
+                                            className="text-secondary size-5 shrink-0"
+                                        />
+                                        <span className="font-semibold">{bullet}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : null}
 
                         {action ? (
                             <div className="pt-2">

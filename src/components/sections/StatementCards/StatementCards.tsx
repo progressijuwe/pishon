@@ -9,9 +9,7 @@ import { cn } from '@/lib/utils';
 export interface Statement {
     icon?: ReactNode;
     title: string;
-    /** The claim itself, set large — this is the card's payload, not a caption. */
     statement: string;
-    /** Inverts the card to the brand navy. Use on one of a pair, not both. */
     emphasis?: boolean;
 }
 
@@ -20,14 +18,6 @@ export interface StatementCardsProps {
     surface?: 'none' | 'alt';
 }
 
-/**
- * A pair of tall cards carrying a single sentence each — mission and vision,
- * promise and proof.
- *
- * Not `FeatureGrid`: these are two statements given room to breathe rather than
- * a row of equal features, the type is set at heading size, and one card
- * inverts to carry more weight than its neighbour.
- */
 export function StatementCards({ items, surface = 'none' }: StatementCardsProps) {
     return (
         <Section spacing="2xl" surface={surface === 'alt' ? 'alt' : 'none'}>
@@ -39,7 +29,7 @@ export function StatementCards({ items, surface = 'none' }: StatementCardsProps)
                                 className={cn(
                                     'flex h-full min-h-60 flex-col justify-between rounded-xl p-6 md:min-h-100',
                                     item.emphasis
-                                        ? 'bg-scrim text-white'
+                                        ? 'bg-scrim on-scrim text-white'
                                         : 'border-border bg-muted text-foreground border',
                                 )}
                             >

@@ -77,7 +77,56 @@ visual weight — check a swatch rather than assuming.
 Accent Gold is `bg-gold` / `text-gold`, deliberately **not** mapped onto
 shadcn's `accent` slot: `accent` drives menu and list hover states, and gold is
 a sparing signature for certifications, stat highlights and quality badges — not
-a hover colour. `accent` stays a neutral tint.
+a hover colour. `accent` stays a neutral tint. Gold is a **fill**: put
+`text-gold-foreground` on it rather than setting gold as type on the page.
+
+## Contrast
+
+Every pairing the site renders meets WCAG 2.1 AA — 4.5:1 for body text, 3:1 for
+large text, icons and control boundaries — in both themes. Two rules keep it
+that way.
+
+**The accent differs by surface.** `--secondary` is `#00639c` on light, tuned to
+read on the page (6.2:1). The brighter `#3da5f5` it replaced measured 2.5:1 as
+text and was effectively invisible.
+
+**Dark surfaces re-point the accent, they don't restyle.** `--scrim` is fixed in
+both themes, so the page accent would sit at 2.9:1 on it. Mark those subtrees
+with `on-scrim` alongside `bg-scrim`:
+
+```tsx
+<footer className="bg-scrim on-scrim text-white">
+```
+
+That swaps `--secondary`, `--secondary-foreground`, `--muted-foreground`,
+`--ring` and `--border` for values tuned to a dark ground, so `text-secondary`,
+`text-muted-foreground` and the focus ring inside keep working untouched. Forget
+it and muted prose lands at 2.5:1 — dark type on a dark band.
+
+**Text on a photograph needs a scrim floor.** `Hero` lays white type over an
+image behind a `--scrim` gradient. A gradient can't be reasoned about like a
+flat token — the ratio changes across the band, and the photograph underneath is
+whatever the page passes in. The rule is that the scrim never drops below **65%
+opacity anywhere text can reach**: at 60% a pale photograph puts the
+description (white at 90% opacity) at 4.38:1. That is why the fade stops at
+`to-scrim/65` and only falls further from `lg` up, where the copy is confined to
+the left half.
+
+`scripts/contrast-audit.mjs` cannot see this — it reads flat tokens. Changing
+the gradient means re-measuring against the real pixels.
+
+**A field's outline is not a divider.** `--input` is deliberately darker than
+`--border`: WCAG 1.4.11 asks 3:1 of any control boundary, and a text field's
+outline is the only thing saying a field is there. At the `--border` value it
+measured 1.48:1. It is now 3.35:1 on light and 3.74:1 on dark. Keep the two
+tokens separate — collapsing them back re-breaks every form.
+
+The feedback colours are deeper than the source palette because `Badge` and
+`Alert` render them as text on a 15% tint of themselves; at the original values
+that pairing sat between 1.9:1 and 3.9:1.
+
+Re-check with `node scripts/contrast-audit.mjs` after changing any colour — it
+reads `tokens.css` directly, so it cannot drift from what ships.
 
 ## Typography
 

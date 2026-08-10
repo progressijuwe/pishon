@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import {
     EyeIcon,
     GlobeIcon,
@@ -14,36 +13,26 @@ import Image from 'next/image';
 import aboutFacilityImage from '@/assets/about-facility.jpg';
 import aboutHeroImage from '@/assets/about-hero.jpg';
 import aboutTrustImage from '@/assets/about-trust.jpg';
-import divisionAgriculturalImage from '@/assets/division-agricultural.jpg';
-import divisionMachineryImage from '@/assets/division-machinery.jpg';
-import divisionMineralsImage from '@/assets/division-minerals.jpg';
-import galleryLabImage from '@/assets/gallery-lab.jpg';
-import galleryOfficeImage from '@/assets/gallery-office.jpg';
-import galleryTrucksImage from '@/assets/gallery-trucks.jpg';
-import galleryWarehouseImage from '@/assets/gallery-warehouse.jpg';
 import milestone2015Image from '@/assets/milestone-2015.jpg';
 import milestone2017Image from '@/assets/milestone-2017.jpg';
 import milestone2019Image from '@/assets/milestone-2019.jpg';
 import milestone2021Image from '@/assets/milestone-2021.jpg';
 import milestone2024Image from '@/assets/milestone-2024.jpg';
-import { CardGrid } from '@/components/sections/CardGrid';
 import { CtaBand } from '@/components/sections/CtaBand';
 import { FeatureGrid } from '@/components/sections/FeatureGrid';
-import { GalleryGrid } from '@/components/sections/GalleryGrid';
 import { Hero } from '@/components/sections/Hero';
-import { LogoStrip } from '@/components/sections/LogoStrip';
 import { MediaSplit } from '@/components/sections/MediaSplit';
 import { MilestoneTimeline } from '@/components/sections/MilestoneTimeline';
-import { StatGrid } from '@/components/sections/StatGrid';
 import { StatementCards } from '@/components/sections/StatementCards';
 import { Heading } from '@/components/shared/Heading';
-import { Text } from '@/components/shared/Text';
+import { createMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
     title: 'About Us',
     description:
         'Since 2015, Pishon Parts & Machineries Ltd has grown from a specialised parts supplier into a diversified global trade leader.',
-};
+    path: '/about',
+});
 
 export default function AboutPage() {
     return (
@@ -64,8 +53,8 @@ export default function AboutPage() {
                 ]}
                 image={aboutFacilityImage}
                 imageAlt="Technicians monitoring precision machinery on an automated assembly line."
-                highlight={{ value: '9+ Years', description: 'of industry experience.' }}
-                action={{ label: 'Request a quote', href: '/contact' }}
+                highlight={{ value: '10+ Years', description: 'of industry experience.' }}
+                action={{ label: 'Request a quote', href: '/request-quote' }}
             />
 
             <MilestoneTimeline
@@ -178,43 +167,6 @@ export default function AboutPage() {
                 ]}
             />
 
-            <CardGrid
-                title="Specialized Business Divisions"
-                description="Precision focus across three key verticals to serve the diverse needs of the global industrial economy."
-                items={[
-                    {
-                        title: 'Agricultural Commodities',
-                        description:
-                            'Sourcing and exporting the finest Nigerian Cocoa, Cashew Nuts, and Ginger to global confectioners and food processors.',
-                        image: divisionAgriculturalImage,
-                        imageAlt: 'Cocoa beans and cashew nuts presented in burlap sacks.',
-                        action: {
-                            label: 'View Division',
-                            href: '/products/agricultural-commodities',
-                        },
-                    },
-                    {
-                        title: 'Solid Minerals',
-                        description:
-                            'Reliable supply chains for coal, zinc ore, and lead ore. We handle the logistics from mine site to international port.',
-                        image: divisionMineralsImage,
-                        imageAlt: 'Samples of coal, zinc ore and lead on a dark studio surface.',
-                        action: { label: 'View Division', href: '/products/solid-minerals' },
-                    },
-                    {
-                        title: 'Parts & Machinery',
-                        description:
-                            'Critical spare parts and heavy machinery sourcing for the manufacturing, construction, and mining sectors.',
-                        image: divisionMachineryImage,
-                        imageAlt: 'Gears, bearings and hydraulic parts on a steel workbench.',
-                        action: {
-                            label: 'View Division',
-                            href: '/products/mechanical-parts-and-machinery',
-                        },
-                    },
-                ]}
-            />
-
             <FeatureGrid
                 surface="primary"
                 columns={2}
@@ -267,59 +219,11 @@ export default function AboutPage() {
                 ]}
             />
 
-            <StatGrid
-                surface="alt"
-                columns={5}
-                size="compact"
-                stats={[
-                    { value: '10+', label: 'Years' },
-                    { value: '25+', label: 'Countries' },
-                    { value: '50+', label: 'Products' },
-                    { value: '500+', label: 'Shipments' },
-                    { value: '100+', label: 'Partners' },
-                ]}
-            />
-
-            <LogoStrip
-                label="Certified Compliance"
-                items={['NEPC', 'SGS', 'MAN', 'ISO:9001', 'ICC']}
-            />
-
-            <GalleryGrid
-                title="Operations in Action"
-                aside={
-                    <Text muted className="max-w-lg">
-                        Inside our warehouses, processing facilities and shipping operations.
-                    </Text>
-                }
-                items={[
-                    {
-                        image: galleryWarehouseImage,
-                        alt: 'Sacks of cocoa beans stacked on pallets in a commodity warehouse.',
-                        wide: true,
-                        tall: true,
-                    },
-                    {
-                        image: galleryLabImage,
-                        alt: 'A technician inspecting mineral samples under a microscope.',
-                    },
-                    {
-                        image: galleryTrucksImage,
-                        alt: 'Transport trucks loaded with containers at a port facility.',
-                        tall: true,
-                    },
-                    {
-                        image: galleryOfficeImage,
-                        alt: 'The glass-fronted corporate headquarters building.',
-                    },
-                ]}
-            />
-
             <CtaBand
                 title="Let's Build a Long-Term Business Partnership"
                 description="Talk to our trade desk about volumes, specifications and delivery terms for your next shipment."
                 actions={[
-                    { label: 'Request Quote', href: '/contact' },
+                    { label: 'Request Quote', href: '/request-quote' },
                     { label: 'Explore Products', href: '/products', variant: 'outline' },
                 ]}
             />

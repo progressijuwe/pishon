@@ -6,6 +6,7 @@ import { Reveal } from '@/components/shared/Reveal';
 import { Section } from '@/components/shared/Section';
 import { Text } from '@/components/shared/Text';
 import { Button } from '@/components/ui/Button';
+import { actionArrow } from '@/lib/action-arrow';
 import { cn } from '@/lib/utils';
 
 export interface CtaAction {
@@ -20,14 +21,9 @@ export interface CtaBandProps {
     actions?: readonly CtaAction[];
 }
 
-/**
- * The closing call to action. Uses `--scrim` rather than `--primary`: the band
- * carries white type and a white-bordered button, neither of which survives
- * `--primary` flipping to a pale tint in dark mode.
- */
 export function CtaBand({ title, description, actions = [] }: CtaBandProps) {
     return (
-        <Section spacing="hero" className="bg-scrim relative overflow-hidden text-white">
+        <Section spacing="hero" className="bg-scrim on-scrim relative overflow-hidden text-white">
             <div
                 aria-hidden="true"
                 className="from-secondary absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] to-transparent opacity-10"
@@ -60,6 +56,7 @@ export function CtaBand({ title, description, actions = [] }: CtaBandProps) {
                                         }
                                         size="lg"
                                         asChild
+                                        rightIcon={actionArrow(action.href)}
                                         className={cn(
                                             'text-label h-12 px-12 transition-transform hover:scale-[1.03]',
                                             action.variant === 'outline' &&
