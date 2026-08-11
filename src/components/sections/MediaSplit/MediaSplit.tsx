@@ -40,12 +40,12 @@ export function MediaSplit({
     return (
         <Section spacing="2xl" surface={surface === 'alt' ? 'alt' : 'none'}>
             <Container>
-                <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-30">
+                <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-30">
                     <Reveal
                         from={reverse ? 'right' : 'left'}
                         className={cn('relative', reverse && 'lg:order-2')}
                     >
-                        <div className="group relative aspect-4/5 overflow-hidden rounded-xl shadow-xl">
+                        <div className="group relative aspect-4/3 overflow-hidden rounded-xl shadow-xl lg:aspect-4/5">
                             <Image
                                 src={image}
                                 alt={imageAlt}

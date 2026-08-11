@@ -8,6 +8,7 @@
 
 @utility on-scrim {
     --secondary: var(--scrim-accent);
+    --secondary-hover: #86c8ff;
     --secondary-foreground: var(--scrim);
     --muted-foreground: --alpha(#ffffff / 75%);
     --ring: var(--scrim-accent);

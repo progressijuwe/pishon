@@ -45,7 +45,10 @@ export function Section<T extends ElementType = 'section'>({
     const Component = (as ?? 'section') as ElementType;
 
     return (
-        <Component className={cn(sectionVariants({ spacing, surface }), className)} {...props}>
+        <Component
+            className={cn('overflow-x-clip', sectionVariants({ spacing, surface }), className)}
+            {...props}
+        >
             {children}
         </Component>
     );
