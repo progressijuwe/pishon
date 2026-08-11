@@ -106,23 +106,38 @@ export function NavMenu({ items, cta }: NavMenuProps) {
                     )}
                 </button>
 
-                {!isDesktop && isExpanded ? (
-                    <ul
-                        id={submenuId(item)}
-                        className="animate-in fade-in-0 slide-in-from-top-1 mt-4 flex flex-col gap-4 border-l border-white/20 pl-4"
+                {!isDesktop ? (
+                    <div
+                        inert={!isExpanded}
+                        className={cn(
+                            'ease-out-quart grid transition-all duration-300',
+                            isExpanded
+                                ? 'grid-rows-[1fr] opacity-100'
+                                : 'grid-rows-[0fr] opacity-0',
+                        )}
                     >
-                        {children.map((child) => (
-                            <li key={child.href}>
-                                <Link
-                                    href={child.href}
-                                    onClick={closeMenu}
-                                    className="text-body hover:text-secondary focus-visible:ring-ring block rounded-md transition-colors outline-none focus-visible:ring-[3px]"
-                                >
-                                    {child.title}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
+                        <div className="overflow-hidden">
+                            <ul
+                                id={submenuId(item)}
+                                className={cn(
+                                    'ease-out-quart flex flex-col gap-4 pt-4 pl-1 transition-transform duration-300',
+                                    isExpanded ? 'translate-y-0' : '-translate-y-2',
+                                )}
+                            >
+                                {children.map((child) => (
+                                    <li key={child.href}>
+                                        <Link
+                                            href={child.href}
+                                            onClick={closeMenu}
+                                            className="text-body hover:text-secondary focus-visible:ring-ring block rounded-md transition-colors outline-none focus-visible:ring-[3px]"
+                                        >
+                                            {child.title}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
                 ) : null}
             </li>
         );

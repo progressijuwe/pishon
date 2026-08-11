@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+import { sendEnquiryEmail } from '@/lib/mail';
 import { quoteSchema } from '@/validators/quote';
 
 export async function POST(request: Request) {
@@ -27,10 +28,34 @@ export async function POST(request: Request) {
         );
     }
 
-    const inbox = process.env.QUOTE_INBOX ?? process.env.CONTACT_INBOX;
+    const quote = parsed.data;
 
-    if (!inbox) {
-        console.warn('[quote] QUOTE_INBOX is not set — quotation request was not delivered.');
+    const outcome = await sendEnquiryEmail({
+        subject: `RFQ — ${quote.product} — ${quote.quantity} ${quote.unit} — ${quote.company}`,
+        heading: 'New quotation request',
+        replyTo: quote.email,
+        fields: [
+            { label: 'Name', value: quote.fullName },
+            { label: 'Job title', value: quote.jobTitle ?? '' },
+            { label: 'Company', value: quote.company },
+            { label: 'Email', value: quote.email },
+            { label: 'Phone', value: quote.phone ?? '' },
+            { label: 'Country of operation', value: quote.country },
+            { label: 'Category', value: quote.category },
+            { label: 'Product', value: quote.product },
+            { label: 'Quantity', value: `${quote.quantity} ${quote.unit}` },
+            { label: 'Specification', value: quote.specification ?? '' },
+            { label: 'Destination country', value: quote.destinationCountry },
+            { label: 'Port of discharge', value: quote.portOfDischarge },
+            { label: 'Shipping method', value: quote.shippingMethod },
+            { label: 'Target delivery date', value: quote.targetDate ?? '' },
+            { label: 'Packaging', value: quote.packaging },
+            { label: 'Notes', value: quote.notes ?? '' },
+        ],
+    });
+
+    if (outcome.status === 'not_configured') {
+        console.warn('[quote] RESEND_API_KEY or ENQUIRY_INBOX is unset — request not delivered.');
 
         return NextResponse.json(
             {
@@ -39,6 +64,19 @@ export async function POST(request: Request) {
                 code: 'delivery_not_configured',
             },
             { status: 503 },
+        );
+    }
+
+    if (outcome.status === 'failed') {
+        console.error('[quote] delivery failed:', outcome.reason);
+
+        return NextResponse.json(
+            {
+                message:
+                    'We could not submit your request just now. Please try again, or email your specifications directly.',
+                code: 'delivery_failed',
+            },
+            { status: 502 },
         );
     }
 

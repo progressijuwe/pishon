@@ -13,6 +13,7 @@
 
     --secondary: #00639c;
     --secondary-foreground: #ffffff;
+    --secondary-hover: #004a75;
 
     --muted: #eef4f8;
     --muted-foreground: #475569;
@@ -67,6 +68,7 @@
     --primary-foreground: #011b3b;
     --secondary: #98cbff;
     --secondary-foreground: #011b3b;
+    --secondary-hover: #c2e0ff;
 
     --muted: #2d3133;
     --muted-foreground: #94a9cb;
@@ -124,6 +126,7 @@
     --color-primary-foreground: var(--primary-foreground);
     --color-secondary: var(--secondary);
     --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary-hover: var(--secondary-hover);
 
     --color-muted: var(--muted);
     --color-muted-foreground: var(--muted-foreground);

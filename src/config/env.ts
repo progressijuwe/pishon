@@ -7,6 +7,9 @@ const clientSchema = z.object({
 
 const serverSchema = z.object({
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
+    RESEND_API_KEY: z.string().min(1).optional(),
+    ENQUIRY_INBOX: z.email().optional(),
+    ENQUIRY_FROM: z.string().min(1).optional(),
 });
 
 const clientEnv = {
@@ -16,6 +19,9 @@ const clientEnv = {
 
 const serverEnv = {
     NODE_ENV: process.env.NODE_ENV,
+    RESEND_API_KEY: process.env.RESEND_API_KEY || undefined,
+    ENQUIRY_INBOX: process.env.ENQUIRY_INBOX || undefined,
+    ENQUIRY_FROM: process.env.ENQUIRY_FROM || undefined,
 };
 
 function parse<T extends z.ZodType>(schema: T, input: unknown, scope: string): z.infer<T> {

@@ -101,7 +101,10 @@ export default function ContactPage() {
                                 <ContactDetail
                                     icon={<MapPinIcon />}
                                     label="Headquarters"
-                                    lines={['12 Marina, Lagos Island', 'Lagos, Nigeria']}
+                                    lines={[
+                                        '4B Ayodele Close, Off Allen Avenue,',
+                                        'Ikeja, Lagos, Nigeria',
+                                    ]}
                                 />
                                 <ContactDetail
                                     icon={<ClockIcon />}

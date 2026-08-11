@@ -18,7 +18,7 @@ import servicesFreightImage from '@/assets/services-freight.jpg';
 import servicesHeroImage from '@/assets/services-hero.jpg';
 import servicesIntroImage from '@/assets/services-intro.jpg';
 import servicesQaImage from '@/assets/services-qa.jpg';
-import { CardGrid } from '@/components/sections/CardGrid';
+import { ImageTiles } from '@/components/sections/ImageTiles';
 import { CtaBand } from '@/components/sections/CtaBand';
 import { Faq } from '@/components/sections/Faq';
 import { FeatureGrid } from '@/components/sections/FeatureGrid';
@@ -133,9 +133,7 @@ export default function ServicesPage() {
                 imageAlt="A technician in a clean suit taking high-precision laser measurements of a component."
             />
 
-            <CardGrid
-                columns={3}
-                mediaHeight="short"
+            <ImageTiles
                 title="Sector Specialisation"
                 description="Tailored procurement for the industries that move economies."
                 items={[
