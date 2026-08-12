@@ -15,7 +15,9 @@ export function StructuredData() {
             },
             address: {
                 '@type': 'PostalAddress',
-                addressLocality: 'Lagos',
+                streetAddress: '5 Osayi Street, off Ewah Road',
+                addressLocality: 'Benin City',
+                addressRegion: 'Edo',
                 addressCountry: 'NG',
             },
             contactPoint: {
@@ -23,7 +25,7 @@ export function StructuredData() {
                 contactType: 'sales',
                 email: siteConfig.email,
                 telephone: siteConfig.phone,
-                areaServed: 'Worldwide',
+                areaServed: 'NG',
                 availableLanguage: 'English',
             },
         },

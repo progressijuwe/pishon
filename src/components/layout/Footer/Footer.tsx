@@ -1,14 +1,19 @@
-import { GlobeIcon, MailIcon, PhoneIcon } from 'lucide-react';
+import { MailIcon, MessageCircleIcon, PhoneIcon } from 'lucide-react';
 import Link from 'next/link';
 
 import { Container } from '@/components/shared/Container';
 import { Text } from '@/components/shared/Text';
 import { footerNav, siteConfig } from '@/config/site';
+import { mailHref, telHref, whatsappHref } from '@/lib/contact-links';
 
 const SOCIAL_LINKS = [
-    { label: 'Website', href: siteConfig.url, Icon: GlobeIcon },
-    { label: 'Email us', href: `mailto:${siteConfig.email}`, Icon: MailIcon },
-    { label: 'Call us', href: `tel:${siteConfig.phone.replace(/\s/g, '')}`, Icon: PhoneIcon },
+    {
+        label: 'Chat on WhatsApp',
+        href: whatsappHref(`Hello ${siteConfig.name}, I have an enquiry.`),
+        Icon: MessageCircleIcon,
+    },
+    { label: 'Email us', href: mailHref, Icon: MailIcon },
+    { label: 'Call us', href: telHref, Icon: PhoneIcon },
 ] as const;
 
 export function Footer() {

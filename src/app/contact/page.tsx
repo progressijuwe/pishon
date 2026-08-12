@@ -5,6 +5,7 @@ import {
     LockIcon,
     MailIcon,
     MapPinIcon,
+    MessageCircleIcon,
     PhoneIcon,
     ReceiptTextIcon,
     TruckIcon,
@@ -23,6 +24,7 @@ import { Section } from '@/components/shared/Section';
 import { SectionHeading } from '@/components/shared/SectionHeading';
 import { Text } from '@/components/shared/Text';
 import { siteConfig } from '@/config/site';
+import { mailHref, telHref, whatsappHref } from '@/lib/contact-links';
 import { createMetadata } from '@/lib/seo';
 
 export const metadata = createMetadata({
@@ -40,8 +42,8 @@ export default function ContactPage() {
                 description="Connect with our industrial experts to streamline your global procurement and logistics requirements."
                 image={galleryOfficeImage}
                 actions={[
-                    { label: 'Request Quote', href: '#enquiry' },
-                    { label: 'Schedule a Consultation', href: '#enquiry', variant: 'outline' },
+                    { label: 'Send an Enquiry', href: '#enquiry' },
+                    { label: 'Request a Quote', href: '/request-quote', variant: 'outline' },
                 ]}
             />
 
@@ -83,7 +85,8 @@ export default function ContactPage() {
                     {
                         icon: <HandshakeIcon />,
                         title: 'Partnership',
-                        description: 'Manufacturers looking to join our global supply chain.',
+                        description:
+                            'Producers and manufacturers looking to supply into our network.',
                     },
                 ]}
             />
@@ -102,8 +105,8 @@ export default function ContactPage() {
                                     icon={<MapPinIcon />}
                                     label="Headquarters"
                                     lines={[
-                                        '4B Ayodele Close, Off Allen Avenue,',
-                                        'Ikeja, Lagos, Nigeria',
+                                        '5 Osayi Street, off Ewah Road,',
+                                        'Benin City, Edo State, Nigeria',
                                     ]}
                                 />
                                 <ContactDetail
@@ -118,13 +121,21 @@ export default function ContactPage() {
                                     icon={<MailIcon />}
                                     label="Email"
                                     lines={[siteConfig.email]}
-                                    href={`mailto:${siteConfig.email}`}
+                                    href={mailHref}
                                 />
                                 <ContactDetail
                                     icon={<PhoneIcon />}
                                     label="Telephone"
                                     lines={[siteConfig.phone]}
-                                    href={`tel:${siteConfig.phone.replace(/\s/g, '')}`}
+                                    href={telHref}
+                                />
+                                <ContactDetail
+                                    icon={<MessageCircleIcon />}
+                                    label="WhatsApp"
+                                    lines={['Message our trade desk']}
+                                    href={whatsappHref(
+                                        `Hello ${siteConfig.name}, I have an enquiry.`,
+                                    )}
                                 />
                             </ul>
 
@@ -144,7 +155,7 @@ export default function ContactPage() {
 
             <CtaBand
                 title="Let's Build Long-Term Business Together"
-                description="Schedule a 15-minute diagnostic call with our senior procurement officers to discuss your annual maintenance plan."
+                description="Send us your specification and our procurement officers will respond within one business day."
                 actions={[
                     { label: 'Send an Enquiry', href: '#enquiry' },
                     { label: 'Email Us', href: `mailto:${siteConfig.email}`, variant: 'outline' },

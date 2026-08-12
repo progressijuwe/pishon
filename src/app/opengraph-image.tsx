@@ -50,7 +50,7 @@ export default async function Image() {
                         letterSpacing: '-0.02em',
                     }}
                 >
-                    Connecting Global Markets with Nigerian Excellence
+                    We Farm It, Mine It, and Ship It
                 </span>
                 <span
                     style={{
@@ -61,7 +61,7 @@ export default async function Image() {
                         lineHeight: 1.5,
                     }}
                 >
-                    Commodities, solid minerals and industrial machinery parts, exported worldwide.
+                    Farm commodities, solid minerals and industrial sourcing. Benin City, Nigeria.
                 </span>
             </div>
 

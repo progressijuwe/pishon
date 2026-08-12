@@ -1,24 +1,54 @@
 import { z } from 'zod';
 
-export const ENQUIRY_COUNTRIES = [
-    'Nigeria',
-    'Ghana',
-    'South Africa',
-    'United Kingdom',
-    'United States',
-    'Germany',
-    'Netherlands',
-    'China',
-    'India',
-    'United Arab Emirates',
-    'Other',
+export const NIGERIAN_STATES = [
+    'Abia',
+    'Adamawa',
+    'Akwa Ibom',
+    'Anambra',
+    'Bauchi',
+    'Bayelsa',
+    'Benue',
+    'Borno',
+    'Cross River',
+    'Delta',
+    'Ebonyi',
+    'Edo',
+    'Ekiti',
+    'Enugu',
+    'FCT — Abuja',
+    'Gombe',
+    'Imo',
+    'Jigawa',
+    'Kaduna',
+    'Kano',
+    'Katsina',
+    'Kebbi',
+    'Kogi',
+    'Kwara',
+    'Lagos',
+    'Nasarawa',
+    'Niger',
+    'Ogun',
+    'Ondo',
+    'Osun',
+    'Oyo',
+    'Plateau',
+    'Rivers',
+    'Sokoto',
+    'Taraba',
+    'Yobe',
+    'Zamfara',
+    'Outside Nigeria',
 ] as const;
 
 export const ENQUIRY_CATEGORIES = [
     'Agricultural Commodities',
     'Solid Minerals',
-    'Mechanical Parts & Machinery',
-    'Logistics & Freight',
+    'Industrial Parts & Machinery',
+    'Export Logistics',
+    'Warehousing',
+    'General Importation',
+    'Oil & Gas Services',
     'Other',
 ] as const;
 
@@ -32,8 +62,8 @@ export const contactSchema = z.object({
         .regex(/^[+()\d][\d\s()-]{6,19}$/, 'Enter a valid phone number')
         .optional()
         .or(z.literal('')),
-    country: z.enum(ENQUIRY_COUNTRIES, 'Select a destination country'),
-    category: z.enum(ENQUIRY_CATEGORIES, 'Select a product category'),
+    state: z.enum(NIGERIAN_STATES, 'Select where you are based'),
+    category: z.enum(ENQUIRY_CATEGORIES, 'Select what your enquiry is about'),
     message: z
         .string()
         .trim()

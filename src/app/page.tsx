@@ -27,75 +27,76 @@ import { CtaBand } from '@/components/sections/CtaBand';
 import { FeatureGrid } from '@/components/sections/FeatureGrid';
 import { Hero } from '@/components/sections/Hero';
 import { ImageTiles } from '@/components/sections/ImageTiles';
-import { LogoStrip } from '@/components/sections/LogoStrip';
 import { MediaSplit } from '@/components/sections/MediaSplit';
 import { ProductGrid } from '@/components/sections/ProductGrid';
 import { StatGrid } from '@/components/sections/StatGrid';
 import { Heading } from '@/components/shared/Heading';
 import { Text } from '@/components/shared/Text';
+import { productSpecs } from '@/config/specs';
 
 export default function HomePage() {
     return (
         <>
             <Hero
-                title="Connecting Global Markets with Nigerian Excellence"
-                description="Reliable export of high-grade commodities and industrial machinery parts across five continents. We bridge the gap between Nigerian production and international demand."
+                title="We Farm It, Mine It, and Ship It"
+                description="A Nigerian producer and exporter of agricultural commodities and solid minerals, and a sourcing desk for the industrial parts West African operators run on. Choose the division you are buying from."
                 image={heroImage}
                 actions={[
                     { label: 'Request Quote', href: '/request-quote' },
-                    { label: 'Explore Products', href: '/products', variant: 'outline' },
+                    { label: 'Explore Products', href: '/#divisions', variant: 'outline' },
                 ]}
             />
 
             <MediaSplit
                 title="The Backbone of Nigeria's International Trade"
                 body={[
-                    'Pishon Parts & Machineries Ltd stands as a premier facilitator in the global supply chain. Founded on the principles of integrity and mechanical precision, we have evolved from a machinery specialist into a multi-sector export powerhouse.',
-                    'Whether it is the raw energy of solid minerals, the richness of West African cocoa, or critical industrial components, we ensure every shipment meets stringent international standards and arrives with mathematical precision.',
+                    'Pishon Parts & Machineries Ltd is a vertically integrated producer and trader. We operate cocoa, banga and oil palm farms, supply solid minerals from Nigerian sites, and run a sourcing desk for industrial parts and machinery.',
+                    'Because we farm our own cocoa and oil palm, a consignment can be traced back to the plot it grew on rather than to the last aggregator who handled it.',
                 ]}
                 image={companyOverviewImage}
                 imageAlt="An export manager inspecting mechanical parts in a modern warehouse facility."
                 highlight={{
-                    value: 'Over 25',
-                    description:
-                        'Strategic partnerships across Europe, Asia, and North America for seamless commodity flow.',
+                    value: 'Own farms',
+                    description: 'Cocoa and oil palm grown on land we operate.',
                 }}
                 action={{ label: 'Learn more about our heritage', href: '/about' }}
             />
 
             <CardGrid
+                id="divisions"
                 surface="alt"
-                title="Specialized Business Divisions"
-                description="Precision focus across three key verticals to serve the diverse needs of the global industrial economy."
+                title="Three Divisions, Three Kinds of Buyer"
+                description="Each division serves a different buyer with different requirements. Start where your purchase sits."
                 items={[
                     {
-                        title: 'Agricultural Commodities',
+                        title: 'Agriculture & Commodities',
                         description:
-                            'Sourcing and exporting the finest Nigerian Cocoa, Cashew Nuts, and Ginger to global confectioners and food processors.',
+                            'Cocoa and oil palm grown on our own farms, plus sesame, cashew and spices sourced through vetted cooperatives. For confectioners, processors and commodity buyers.',
                         image: divisionAgriculturalImage,
                         imageAlt: 'Cocoa beans and cashew nuts presented in burlap sacks.',
                         action: {
                             label: 'View Division',
-                            href: '/products/agricultural-commodities',
+                            href: '/agriculture',
                         },
                     },
                     {
                         title: 'Solid Minerals',
                         description:
-                            'Reliable supply chains for coal, zinc ore, and lead ore. We handle the logistics from mine site to international port.',
+                            'Coal, lithium ore, limestone and iron ore, moved from mine site to international port. For mills, smelters and battery supply chains.',
                         image: divisionMineralsImage,
-                        imageAlt: 'Samples of coal, zinc ore and lead on a dark studio surface.',
-                        action: { label: 'View Division', href: '/products/solid-minerals' },
+                        imageAlt:
+                            'Samples of coal, lithium ore and iron ore on a dark studio surface.',
+                        action: { label: 'View Division', href: '/minerals' },
                     },
                     {
-                        title: 'Parts & Machinery',
+                        title: 'Industrial Sourcing',
                         description:
-                            'Critical spare parts and heavy machinery sourcing for the manufacturing, construction, and mining sectors.',
+                            'We find, vet and import spare parts and heavy machinery for plant operators across Nigeria and West Africa. For maintenance leads and project procurement.',
                         image: divisionMachineryImage,
                         imageAlt: 'Gears, bearings and hydraulic parts on a steel workbench.',
                         action: {
                             label: 'View Division',
-                            href: '/products/mechanical-parts-and-machinery',
+                            href: '/industrial',
                         },
                     },
                 ]}
@@ -104,39 +105,27 @@ export default function HomePage() {
             <ProductGrid
                 eyebrow="Export Portfolio"
                 title="High-Demand Products"
-                action={{ label: 'View All Products', href: '/products' }}
+                action={{ label: 'View All Products', href: '/#divisions' }}
                 items={[
                     {
-                        title: 'Premium Cocoa Beans',
+                        title: productSpecs.cocoa.name,
                         image: productCocoaImage,
                         imageAlt: 'Fermented Nigerian cocoa beans spread across a wooden surface.',
-                        specs: [
-                            { label: 'Grade', value: 'Main Crop / Grade 1' },
-                            { label: 'Moisture', value: '< 7.5%' },
-                            { label: 'Origin', value: 'Nigeria (Ondo/Ogun)' },
-                        ],
+                        specs: productSpecs.cocoa.specs,
                         action: { label: 'Request Quote', href: '/request-quote' },
                     },
                     {
-                        title: 'Raw Cashew Nuts',
+                        title: productSpecs.cashew.name,
                         image: productCashewImage,
                         imageAlt: 'Raw cashew nuts in their shells in a concrete tray.',
-                        specs: [
-                            { label: 'KOR', value: '48 - 52 lbs' },
-                            { label: 'Nut Count', value: '180 - 200/kg' },
-                            { label: 'Origin', value: 'Nigeria (Kogi/Ogbomosho)' },
-                        ],
+                        specs: productSpecs.cashew.specs,
                         action: { label: 'Request Quote', href: '/request-quote' },
                     },
                     {
-                        title: 'High-Calorie Coal',
+                        title: productSpecs.coal.name,
                         image: productCoalImage,
-                        imageAlt: 'Chunks of industrial-grade anthracite coal.',
-                        specs: [
-                            { label: 'Fixed Carbon', value: '75% - 85%' },
-                            { label: 'Ash Content', value: '< 10%' },
-                            { label: 'Sulphur', value: '< 0.6%' },
-                        ],
+                        imageAlt: 'Chunks of industrial-grade sub-bituminous coal.',
+                        specs: productSpecs.coal.specs,
                         action: { label: 'Request Quote', href: '/request-quote' },
                     },
                 ]}
@@ -158,7 +147,7 @@ export default function HomePage() {
                             href="/services"
                             className="text-secondary focus-visible:ring-ring inline-flex items-center gap-2 rounded-md font-bold outline-none hover:underline focus-visible:ring-[3px]"
                         >
-                            Download Service Brochure
+                            Explore Our Services
                             <DownloadIcon aria-hidden="true" className="size-5" />
                         </Link>
                     </>
@@ -168,7 +157,7 @@ export default function HomePage() {
                         icon: <GlobeIcon />,
                         title: 'Commodity Export',
                         description:
-                            'Direct sourcing from primary producers with rigorous quality assurance protocols to meet international buyer specifications.',
+                            'Direct sourcing from primary producers, with quality assurance against the specification a client actually orders to.',
                     },
                     {
                         icon: <TruckIcon />,
@@ -186,7 +175,7 @@ export default function HomePage() {
                         icon: <FileTextIcon />,
                         title: 'Trade Documentation',
                         description:
-                            'Comprehensive handling of Form M, Certificates of Origin, Bill of Ladings, and all regulatory export compliance.',
+                            'Comprehensive handling of Form M, Certificates of Origin, Bills of Lading, and all regulatory export compliance.',
                     },
                 ]}
             />
@@ -230,21 +219,16 @@ export default function HomePage() {
                         description: 'Industrial and agricultural trade expertise.',
                     },
                     {
-                        value: '25+',
-                        label: 'Countries Served',
-                        description: 'Global reach across Europe, Asia, and the Americas.',
+                        value: '50+',
+                        label: 'Product Lines',
+                        description: 'From farm commodities and minerals to industrial spares.',
                     },
                     {
-                        value: '50+',
-                        label: 'Products Exported',
-                        description: 'Diverse portfolio from minerals to complex machinery.',
+                        value: '24–48h',
+                        label: 'Quotation Turnaround',
+                        description: 'Costed response on a standard enquiry.',
                     },
                 ]}
-            />
-
-            <LogoStrip
-                label="Trusted & Certified By"
-                items={['NEPC', 'SGS', 'MAN', 'ISO:9001', 'ICC']}
             />
 
             <ImageTiles

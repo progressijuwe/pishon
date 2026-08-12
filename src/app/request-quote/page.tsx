@@ -82,9 +82,9 @@ export default function RequestQuotePage() {
                     },
                     {
                         icon: <GlobeIcon />,
-                        title: 'Global Network',
+                        title: 'Freight & Clearing Network',
                         description:
-                            'Connected to major shipping lines and port authorities worldwide.',
+                            'Established relationships with shipping lines, clearing agents and port authorities.',
                     },
                 ]}
             />

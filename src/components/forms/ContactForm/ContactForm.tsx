@@ -16,7 +16,7 @@ import { Textarea } from '@/components/ui/Textarea';
 import {
     contactSchema,
     ENQUIRY_CATEGORIES,
-    ENQUIRY_COUNTRIES,
+    NIGERIAN_STATES,
     type ContactInput,
 } from '@/validators/contact';
 
@@ -38,7 +38,7 @@ export function ContactForm() {
             company: '',
             email: '',
             phone: '',
-            country: undefined,
+            state: undefined,
             category: undefined,
             message: '',
         },
@@ -123,16 +123,16 @@ export function ContactForm() {
                     {...register('phone')}
                 />
                 <Select
-                    label="Destination country"
-                    placeholder="Select a country"
+                    label="State"
+                    placeholder="Select your state"
                     defaultValue=""
-                    options={toOptions(ENQUIRY_COUNTRIES)}
-                    error={errors.country?.message}
-                    {...register('country')}
+                    options={toOptions(NIGERIAN_STATES)}
+                    error={errors.state?.message}
+                    {...register('state')}
                 />
                 <Select
-                    label="Product category"
-                    placeholder="Select a category"
+                    label="Enquiry about"
+                    placeholder="Select a division or service"
                     defaultValue=""
                     options={toOptions(ENQUIRY_CATEGORIES)}
                     error={errors.category?.message}

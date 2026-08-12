@@ -39,7 +39,7 @@ export default function AboutPage() {
         <>
             <Hero
                 title="About Us"
-                description="Connecting global markets with Nigerian excellence through reliability, quality, and a commitment to international trade standards."
+                description="A vertically integrated Nigerian business — we farm, we supply, and we move goods for operators across the country."
                 image={aboutHeroImage}
             />
 
@@ -48,8 +48,8 @@ export default function AboutPage() {
                 title="A Tradition of Industrial Excellence and Global Trade"
                 body={[
                     "Since our foundation in 2015, Pishon Parts & Machineries Ltd has evolved from a specialized parts supplier into a diversified global trade leader. We bridge the gap between Nigeria's rich natural resources and the world's most demanding industrial sectors.",
-                    'Our commitment to quality is the cornerstone of our operations. Whether we are sourcing premium agricultural commodities, high-grade solid minerals, or precision mechanical components, we adhere to rigorous international standards that ensure our clients receive only the best.',
-                    'By integrating deep local expertise with a sophisticated understanding of global supply chains, we provide a reliable channel for international procurement managers and commodity traders seeking consistency and excellence.',
+                    'Quality control runs through every division. Whether we are grading cocoa from our own farms, sampling a mineral consignment or verifying a part against its specification, the same standards apply before anything reaches a client.',
+                    'We work with processors, manufacturers, plant operators and traders across Nigeria, handling the sourcing, storage and paperwork that sit between a requirement and a delivered consignment.',
                 ]}
                 image={aboutFacilityImage}
                 imageAlt="Technicians monitoring precision machinery on an automated assembly line."
@@ -82,7 +82,7 @@ export default function AboutPage() {
                         year: '2019',
                         title: 'Division Expansion',
                         description:
-                            'Launched dedicated divisions for Agricultural Commodities and Mechanical Machinery to better serve our diverse international clientele.',
+                            'Launched dedicated divisions for agricultural commodities and industrial machinery to serve a widening base of Nigerian clients.',
                         image: milestone2019Image,
                         imageAlt:
                             'A warehouse floor split into cocoa, mineral and machinery zones.',
@@ -144,7 +144,7 @@ export default function AboutPage() {
                         icon: <HandshakeIcon />,
                         title: 'Reliability',
                         description:
-                            'Consistency in supply and delivery, regardless of global market fluctuations.',
+                            'Consistency in supply and delivery, whatever the market is doing.',
                     },
                     {
                         icon: <LightbulbIcon />,
@@ -224,7 +224,7 @@ export default function AboutPage() {
                 description="Talk to our trade desk about volumes, specifications and delivery terms for your next shipment."
                 actions={[
                     { label: 'Request Quote', href: '/request-quote' },
-                    { label: 'Explore Products', href: '/products', variant: 'outline' },
+                    { label: 'Explore Products', href: '/#divisions', variant: 'outline' },
                 ]}
             />
         </>

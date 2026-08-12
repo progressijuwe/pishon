@@ -7,7 +7,6 @@ export * from './GalleryGrid';
 export * from './Hero';
 export * from './ImageTiles';
 export * from './JourneyCarousel';
-export * from './LogoStrip';
 export * from './MediaSplit';
 export * from './MilestoneTimeline';
 export * from './ProcessTimeline';

@@ -18,18 +18,18 @@ import { createMetadata } from '@/lib/seo';
 import { faqs } from '@/config/faqs';
 
 export const metadata = createMetadata({
-    title: 'Mechanical Parts & Machinery',
+    title: 'Industrial Sourcing & Machinery',
     description:
-        'High-spec mechanical components and heavy machinery for the oil, gas, construction and manufacturing sectors — sourced from Tier-1 manufacturers and delivered to site.',
-    path: '/products/mechanical-parts-and-machinery',
+        'We source and import high-spec mechanical components and heavy machinery for operators across Nigeria and West Africa, from Tier-1 manufacturers to your site.',
+    path: '/industrial',
 });
 
 export default function MechanicalPartsAndMachineryPage() {
     return (
         <>
             <Hero
-                title="Mechanical Precision for Heavy Industry"
-                description="Engineering the future of global procurement. High-spec components and heavy machinery for the oil, gas, construction and manufacturing sectors."
+                title="Industrial Parts, Sourced and Landed"
+                description="We source, vet and import high-spec components and heavy machinery for operators across Nigeria and West Africa — from Tier-1 manufacturers to your site."
                 image={machineryHeroImage}
                 actions={[
                     { label: 'View Equipment Catalogue', href: '#catalogue' },
@@ -156,7 +156,7 @@ export default function MechanicalPartsAndMachineryPage() {
                         icon: <WrenchIcon />,
                         title: 'Solid Minerals',
                         description:
-                            'Coal, lithium ore, limestone and iron ore for global industry.',
+                            'Coal, lithium ore, limestone and iron ore for mills and processors.',
                     },
                     {
                         icon: <SproutIcon />,
@@ -171,7 +171,7 @@ export default function MechanicalPartsAndMachineryPage() {
                 ]}
             />
 
-            <Faq title="Frequently Asked Questions" items={faqs.machinery} />
+            <Faq title="Frequently Asked Questions" items={faqs.industrial} />
 
             <CtaBand
                 title="Ready to Power Your Next Major Industrial Project?"
