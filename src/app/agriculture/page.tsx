@@ -32,14 +32,14 @@ export const metadata = createMetadata({
     title: 'Agricultural Commodities',
     description:
         'Export-grade cocoa, cashews, sesame, ginger and more — sourced from certified West African farms with full traceability and phytosanitary compliance.',
-    path: '/products/agricultural-commodities',
+    path: '/agriculture',
 });
 
 export default function AgriculturalCommoditiesPage() {
     return (
         <>
             <Hero
-                title="Premium Agricultural Commodities for Global Markets"
+                title="Agricultural Commodities, Grown and Sourced"
                 description="Export-grade commodities sourced directly from certified farms across Sub-Saharan Africa, inspected batch by batch and shipped with full documentation."
                 image={productCocoaImage}
                 actions={[
@@ -49,7 +49,7 @@ export default function AgriculturalCommoditiesPage() {
             />
 
             <MediaSplit
-                title="Bridging African Orchards to Global Industries"
+                title="From Our Farms to Nigerian Processors"
                 body={[
                     "At Pishon Parts & Machineries Ltd, we leverage a decade of industrial logistics expertise to provide a seamless supply chain for high-grade agricultural commodities. We don't just export; we ensure every metric ton meets international phytosanitary standards.",
                     'Our network spans the most fertile regions of Sub-Saharan Africa, where we partner directly with farmers to implement sustainable cultivation and harvesting practices, ensuring a reliable year-round supply for our enterprise clients.',
@@ -67,11 +67,11 @@ export default function AgriculturalCommoditiesPage() {
                 mediaHeight="short"
                 title="Industrial Grade Catalog"
                 description="Our core commodity offerings, sorted by industrial grade and global availability."
-                action={{ label: 'Download Specs Catalogue', href: '/contact' }}
+                action={{ label: 'Request Specification Sheets', href: '/contact' }}
                 items={[
                     {
                         title: 'Cocoa Beans',
-                        badge: 'Grade A / Premium',
+                        badge: 'Main Crop, Grade 1',
                         status: 'In Stock',
                         description: 'Main crop fermented beans with high oil content.',
                         image: commodityCocoaImage,
@@ -89,7 +89,7 @@ export default function AgriculturalCommoditiesPage() {
                     },
                     {
                         title: 'Cashew Nuts',
-                        badge: 'W180 - W320',
+                        badge: 'Kernel grades W180 – W320',
                         status: 'In Stock',
                         description: 'Raw or roasted kernels sourced from select groves.',
                         image: commodityCashewImage,
@@ -167,7 +167,7 @@ export default function AgriculturalCommoditiesPage() {
                 columns={3}
                 align="center"
                 title="Industrial Applications"
-                description="Serving diverse manufacturing and trade sectors worldwide."
+                description="Serving manufacturers, processors and traders across Nigeria."
                 headingAlign="center"
                 items={[
                     {

@@ -35,28 +35,28 @@ export function StatGrid({
     return (
         <Section spacing={isCompact ? 'xl' : '2xl'} surface={surface === 'alt' ? 'alt' : 'none'}>
             <Container>
-                <dl className={cn('grid grid-cols-1 gap-12 text-center', COLUMN_CLASSES[columns])}>
+                <ul className={cn('grid grid-cols-1 gap-12 text-center', COLUMN_CLASSES[columns])}>
                     {stats.map((stat, index) => (
-                        <Reveal key={stat.label} delay={index * 120}>
+                        <Reveal as="li" key={stat.label} delay={index * 120}>
                             <div className="flex flex-col-reverse">
-                                <dt
+                                <span
                                     className={cn(
-                                        'text-secondary mb-1 font-semibold',
+                                        'text-secondary mb-1 block font-semibold',
                                         isCompact
                                             ? 'text-caption tracking-wider uppercase'
                                             : 'text-h3',
                                     )}
                                 >
                                     {stat.label}
-                                </dt>
-                                <dd
+                                </span>
+                                <span
                                     className={cn(
-                                        'text-primary mb-4 leading-none',
+                                        'text-primary mb-4 block leading-none',
                                         isCompact ? 'text-h2' : 'text-display',
                                     )}
                                 >
                                     <CountUp value={stat.value} />
-                                </dd>
+                                </span>
                             </div>
 
                             {stat.description ? (
@@ -66,7 +66,7 @@ export function StatGrid({
                             ) : null}
                         </Reveal>
                     ))}
-                </dl>
+                </ul>
             </Container>
         </Section>
     );

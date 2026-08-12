@@ -39,7 +39,7 @@ export async function POST(request: Request) {
             { label: 'Company', value: enquiry.company },
             { label: 'Email', value: enquiry.email },
             { label: 'Phone', value: enquiry.phone ?? '' },
-            { label: 'Destination', value: enquiry.country },
+            { label: 'State', value: enquiry.state },
             { label: 'Category', value: enquiry.category },
             { label: 'Message', value: enquiry.message },
         ],

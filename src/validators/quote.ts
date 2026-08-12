@@ -1,12 +1,16 @@
 import { z } from 'zod';
 
-import { ENQUIRY_COUNTRIES } from './contact';
+import { NIGERIAN_STATES } from './contact';
 
 export const QUOTE_CATEGORIES = [
     'Agricultural Commodities',
     'Solid Minerals',
-    'Mechanical Parts',
+    'Industrial Parts',
     'Heavy Machinery',
+    'Export Logistics',
+    'Warehousing',
+    'General Importation',
+    'Oil & Gas Services',
 ] as const;
 
 export const QUOTE_UNITS = [
@@ -43,7 +47,7 @@ export const quoteSchema = z.object({
         .regex(/^[+()\d][\d\s()-]{6,19}$/, 'Enter a valid phone number')
         .optional()
         .or(z.literal('')),
-    country: z.enum(ENQUIRY_COUNTRIES, 'Select your country of operation'),
+    state: z.enum(NIGERIAN_STATES, 'Select where you are based'),
 
     category: z.enum(QUOTE_CATEGORIES, 'Select a product category'),
     product: z.string().trim().min(2, 'Name the specific product'),
@@ -62,8 +66,8 @@ export const quoteSchema = z.object({
     unit: z.enum(QUOTE_UNITS, 'Select a unit of measurement'),
     specification: optionalText(2000),
 
-    destinationCountry: z.string().trim().min(2, 'Enter the destination country'),
-    portOfDischarge: z.string().trim().min(2, 'Enter the port of discharge'),
+    deliveryLocation: z.string().trim().min(2, 'Where should this be delivered?'),
+    portOfDischarge: optionalText(120),
     shippingMethod: z.enum(QUOTE_SHIPPING_METHODS, 'Select a shipping method'),
     targetDate: z
         .string()
@@ -86,7 +90,7 @@ export const QUOTE_STEPS = [
     {
         id: 'business',
         title: 'Business Information',
-        fields: ['fullName', 'company', 'jobTitle', 'email', 'phone', 'country'],
+        fields: ['fullName', 'company', 'jobTitle', 'email', 'phone', 'state'],
     },
     {
         id: 'product',
@@ -97,7 +101,7 @@ export const QUOTE_STEPS = [
         id: 'shipping',
         title: 'Shipping & Logistics',
         fields: [
-            'destinationCountry',
+            'deliveryLocation',
             'portOfDischarge',
             'shippingMethod',
             'targetDate',

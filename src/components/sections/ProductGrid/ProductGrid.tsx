@@ -75,21 +75,21 @@ export function ProductGrid({ eyebrow, title, action, items, surface = 'none' }:
                                 </Heading>
 
                                 {item.specs?.length ? (
-                                    <dl className="mb-6 flex-1">
+                                    <ul className="mb-6 flex-1">
                                         {item.specs.map((spec) => (
-                                            <div
+                                            <li
                                                 key={spec.label}
                                                 className="border-border text-caption flex justify-between gap-4 border-b py-2"
                                             >
-                                                <dt className="text-muted-foreground">
+                                                <span className="text-muted-foreground">
                                                     {spec.label}
-                                                </dt>
-                                                <dd className="text-right font-semibold">
+                                                </span>
+                                                <span className="text-right font-semibold">
                                                     {spec.value}
-                                                </dd>
-                                            </div>
+                                                </span>
+                                            </li>
                                         ))}
-                                    </dl>
+                                    </ul>
                                 ) : null}
 
                                 {item.action ? (

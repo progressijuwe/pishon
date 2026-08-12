@@ -38,75 +38,77 @@ export function MilestoneTimeline({
                     </Reveal>
                 ) : null}
 
-                <ol className="relative flex flex-col gap-20">
+                <div className="relative">
                     <span
                         aria-hidden="true"
                         className="bg-border absolute inset-y-0 left-1/2 hidden w-0.5 -translate-x-1/2 md:block"
                     />
 
-                    {items.map((item, index) => {
-                        const flipped = index % 2 === 1;
+                    <ol className="flex flex-col gap-20">
+                        {items.map((item, index) => {
+                            const flipped = index % 2 === 1;
 
-                        return (
-                            <Reveal
-                                as="li"
-                                key={item.year}
-                                from={flipped ? 'right' : 'left'}
-                                className={cn(
-                                    'relative flex flex-col items-center gap-6 text-center md:gap-0',
-                                    flipped ? 'md:flex-row-reverse' : 'md:flex-row',
-                                )}
-                            >
-                                <div
+                            return (
+                                <Reveal
+                                    as="li"
+                                    key={item.year}
+                                    from={flipped ? 'right' : 'left'}
                                     className={cn(
-                                        'md:w-1/2',
-                                        flipped
-                                            ? 'md:pl-12 md:text-left'
-                                            : 'md:pr-12 md:text-right',
+                                        'relative flex flex-col items-center gap-6 text-center md:gap-0',
+                                        flipped ? 'md:flex-row-reverse' : 'md:flex-row',
                                     )}
                                 >
-                                    <Heading as="h3" size="h3">
-                                        {item.year}
-                                    </Heading>
-                                    <p className="text-secondary text-body font-bold">
-                                        {item.title}
-                                    </p>
-                                    <Text muted className="mt-2">
-                                        {item.description}
-                                    </Text>
-                                </div>
-
-                                <span
-                                    aria-hidden="true"
-                                    className="bg-secondary border-background z-10 size-4 shrink-0 rounded-full border-4"
-                                />
-
-                                {item.image ? (
                                     <div
                                         className={cn(
-                                            'flex md:w-1/2',
+                                            'md:w-1/2',
                                             flipped
-                                                ? 'md:justify-end md:pr-12'
-                                                : 'md:justify-start md:pl-12',
+                                                ? 'md:pl-12 md:text-left'
+                                                : 'md:pr-12 md:text-right',
                                         )}
                                     >
-                                        <div className="relative h-32 w-48 overflow-hidden rounded-lg shadow-sm">
-                                            <Image
-                                                src={item.image}
-                                                alt={item.imageAlt ?? ''}
-                                                fill
-                                                sizes="192px"
-                                                className="object-cover"
-                                            />
-                                        </div>
+                                        <Heading as="h3" size="h3">
+                                            {item.year}
+                                        </Heading>
+                                        <p className="text-secondary text-body font-bold">
+                                            {item.title}
+                                        </p>
+                                        <Text muted className="mt-2">
+                                            {item.description}
+                                        </Text>
                                     </div>
-                                ) : (
-                                    <div className="hidden md:block md:w-1/2" />
-                                )}
-                            </Reveal>
-                        );
-                    })}
-                </ol>
+
+                                    <span
+                                        aria-hidden="true"
+                                        className="bg-secondary border-background z-10 size-4 shrink-0 rounded-full border-4"
+                                    />
+
+                                    {item.image ? (
+                                        <div
+                                            className={cn(
+                                                'flex md:w-1/2',
+                                                flipped
+                                                    ? 'md:justify-end md:pr-12'
+                                                    : 'md:justify-start md:pl-12',
+                                            )}
+                                        >
+                                            <div className="relative h-32 w-48 overflow-hidden rounded-lg shadow-sm">
+                                                <Image
+                                                    src={item.image}
+                                                    alt={item.imageAlt ?? ''}
+                                                    fill
+                                                    sizes="192px"
+                                                    className="object-cover"
+                                                />
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div className="hidden md:block md:w-1/2" />
+                                    )}
+                                </Reveal>
+                            );
+                        })}
+                    </ol>
+                </div>
             </Container>
         </Section>
     );

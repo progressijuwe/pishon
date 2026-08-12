@@ -15,7 +15,7 @@ import { siteConfig } from '@/config/site';
 import { ApiError, getErrorMessage } from '@/lib/api-error';
 import { cn } from '@/lib/utils';
 import { api } from '@/services/api';
-import { ENQUIRY_COUNTRIES } from '@/validators/contact';
+import { NIGERIAN_STATES } from '@/validators/contact';
 import {
     QUOTE_CATEGORIES,
     QUOTE_PACKAGING,
@@ -53,13 +53,13 @@ export function QuoteWizard() {
             jobTitle: '',
             email: '',
             phone: '',
-            country: undefined,
+            state: undefined,
             category: undefined,
             product: '',
             quantity: '',
             unit: undefined,
             specification: '',
-            destinationCountry: '',
+            deliveryLocation: '',
             portOfDischarge: '',
             shippingMethod: undefined,
             targetDate: '',
@@ -216,12 +216,12 @@ export function QuoteWizard() {
                             {...register('phone')}
                         />
                         <Select
-                            label="Country of operation"
-                            placeholder="Select country"
+                            label="State"
+                            placeholder="Select your state"
                             defaultValue=""
-                            options={toOptions(ENQUIRY_COUNTRIES)}
-                            error={errors.country?.message}
-                            {...register('country')}
+                            options={toOptions(NIGERIAN_STATES)}
+                            error={errors.state?.message}
+                            {...register('state')}
                         />
                     </div>
                 ) : null}
@@ -273,14 +273,15 @@ export function QuoteWizard() {
                 {step.id === 'shipping' ? (
                     <div className="grid gap-4 sm:grid-cols-2">
                         <Input
-                            label="Destination country"
-                            autoComplete="country-name"
-                            error={errors.destinationCountry?.message}
-                            {...register('destinationCountry')}
+                            label="Delivery location"
+                            placeholder="e.g. Onitsha, or Tema for export"
+                            error={errors.deliveryLocation?.message}
+                            {...register('deliveryLocation')}
                         />
                         <Input
                             label="Port of discharge"
-                            placeholder="e.g. Tema, Rotterdam"
+                            placeholder="e.g. Apapa, Tema"
+                            description="Optional. Only needed if we are exporting for you."
                             error={errors.portOfDischarge?.message}
                             {...register('portOfDischarge')}
                         />
@@ -374,7 +375,7 @@ const REVIEW_GROUPS = [
             ['Job title', 'jobTitle'],
             ['Email', 'email'],
             ['Phone', 'phone'],
-            ['Country', 'country'],
+            ['State', 'state'],
         ],
     },
     {
@@ -390,7 +391,7 @@ const REVIEW_GROUPS = [
     {
         title: 'Shipping & delivery',
         rows: [
-            ['Destination', 'destinationCountry'],
+            ['Delivery location', 'deliveryLocation'],
             ['Port of discharge', 'portOfDischarge'],
             ['Shipping method', 'shippingMethod'],
             ['Target date', 'targetDate'],
@@ -415,14 +416,16 @@ function ReviewSummary({ values }: { values: QuoteInput }) {
                         {group.title}
                     </h4>
 
-                    <dl className="divide-border divide-y">
+                    <ul className="divide-border divide-y">
                         {group.rows.map(([label, field]) => {
                             const value = values[field];
 
                             return (
-                                <div key={field} className="grid grid-cols-3 gap-4 py-2.5">
-                                    <dt className="text-small text-muted-foreground">{label}</dt>
-                                    <dd className="text-small col-span-2 font-medium break-words">
+                                <li key={field} className="grid grid-cols-3 gap-4 py-2.5">
+                                    <span className="text-small text-muted-foreground">
+                                        {label}
+                                    </span>
+                                    <span className="text-small col-span-2 font-medium break-words">
                                         {value === undefined || value === '' ? (
                                             <span className="text-muted-foreground">
                                                 Not provided
@@ -430,11 +433,11 @@ function ReviewSummary({ values }: { values: QuoteInput }) {
                                         ) : (
                                             String(value)
                                         )}
-                                    </dd>
-                                </div>
+                                    </span>
+                                </li>
                             );
                         })}
-                    </dl>
+                    </ul>
                 </section>
             ))}
 

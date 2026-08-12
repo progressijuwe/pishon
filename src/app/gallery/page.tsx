@@ -38,11 +38,11 @@ export default function GalleryPage() {
         <>
             <Hero
                 title="Gallery"
-                description="Explore our operations, products and international trading capabilities through authentic photography of our global supply chain."
+                description="Our farms, stores, laboratories and loading operations, photographed across the divisions."
                 image={galleryContainerTerminalImage}
                 actions={[
                     { label: 'Request Quote', href: '/request-quote' },
-                    { label: 'View Products', href: '/products', variant: 'outline' },
+                    { label: 'View Products', href: '/#divisions', variant: 'outline' },
                 ]}
             />
 
@@ -165,7 +165,7 @@ export default function GalleryPage() {
                     {
                         title: 'Strategic Oversight',
                         description:
-                            'Our leadership bridges the gap between local resources and global enterprise requirements.',
+                            'Our leadership connects Nigerian production with the operators and processors who depend on it.',
                         image: aboutTrustImage,
                         imageAlt:
                             'Two executives shaking hands in a boardroom overlooking an industrial terminal.',

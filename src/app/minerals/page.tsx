@@ -22,12 +22,14 @@ import { FeatureGrid } from '@/components/sections/FeatureGrid';
 import { Hero } from '@/components/sections/Hero';
 import { MediaSplit } from '@/components/sections/MediaSplit';
 import { createMetadata } from '@/lib/seo';
+import { Faq } from '@/components/sections/Faq';
+import { faqs } from '@/config/faqs';
 
 export const metadata = createMetadata({
     title: 'Solid Minerals',
     description:
         "Strategically sourcing and supplying premium solid minerals from Nigeria's geological reserves — coal, lithium ore, limestone and iron ore, with full export compliance.",
-    path: '/products/solid-minerals',
+    path: '/minerals',
 });
 
 export default function SolidMineralsPage() {
@@ -35,7 +37,7 @@ export default function SolidMineralsPage() {
         <>
             <Hero
                 title="Solid Minerals"
-                description="Strategically sourcing and supplying premium solid minerals from Nigeria's rich geological reserves. We bridge local extraction and international demand through responsible sourcing, rigorous quality control, and streamlined global logistics."
+                description="Coal, lithium ore, limestone and iron ore from Nigerian sites, supplied to mills, smelters and processors — with responsible sourcing, independent assay and the logistics to land it."
                 image={mineralsHeroImage}
                 actions={[
                     { label: 'Request Quote', href: '/request-quote' },
@@ -51,7 +53,7 @@ export default function SolidMineralsPage() {
                     'Every consignment is traced from mine site to vessel, with independent chemical analysis and full export permitting handled in-house.',
                 ]}
                 image={divisionMineralsImage}
-                imageAlt="Coal, zinc ore and lead samples arranged on a dark studio surface."
+                imageAlt="Coal, lithium ore and iron ore samples arranged on a dark studio surface."
                 highlight={{
                     value: '99.8%',
                     description: 'Purity standards met across shipments.',
@@ -198,6 +200,8 @@ export default function SolidMineralsPage() {
                     },
                 ]}
             />
+
+            <Faq title="Frequently Asked Questions" items={faqs.minerals} />
 
             <CtaBand
                 title="Looking for a Reliable Solid Mineral Supplier?"

@@ -1,7 +1,19 @@
 import type { FaqEntry } from '@/components/sections/Faq';
 
 export const faqs = {
-    products: [
+    export: [
+        {
+            question: 'What are your typical shipping lead times?',
+            answer: 'Air freight runs 3–7 days and suits critical replacement parts. Sea freight ranges from 15 days to regional hubs up to 45 days for distant ports. Stocked mechanical parts dispatch within 7–14 days; heavy machinery typically takes 30–60 days including port clearance.',
+        },
+        {
+            question: 'How do you handle customs clearance and documentation?',
+            answer: 'Our documentation team prepares every export paper — commercial invoice, packing list, Bill of Lading, certificate of origin and phytosanitary certificates where required. Our documentation team handles Form M, SONCAP and NCS procedures, and we work with licensed clearing agents at the ports.',
+        },
+        {
+            question: 'Do you handle international shipping end to end?',
+            answer: 'Yes. We provide end-to-end logistics across sea, air and land freight, from inland haulage at origin through to handover at the destination port or site.',
+        },
         {
             question: 'What is the Minimum Order Quantity (MOQ)?',
             answer: 'MOQs start at one 20ft container — roughly 18–25 metric tonnes — for agricultural commodities and bulk minerals. For mechanical parts there is often no MOQ, since we consolidate smaller orders. Contact the trade desk for a specific line item.',
@@ -11,38 +23,8 @@ export const faqs = {
             answer: 'We typically work with a 100% irrevocable Letter of Credit at sight, or T/T payments of 30% deposit and 70% against documents. Terms are negotiable based on order history and volume.',
         },
         {
-            question: 'Do you provide third-party quality inspection reports?',
-            answer: 'Yes. We work with globally recognised inspection agencies such as SGS or Bureau Veritas to provide independent verification of quality, weight and grade before shipment.',
-        },
-        {
-            question: 'Which countries do you currently ship to?',
-            answer: 'We operate established trade routes to major ports in Europe, Asia (China, India, Vietnam), the Middle East and North America.',
-        },
-    ],
-
-    exportProcess: [
-        {
-            question: 'What are your typical shipping lead times?',
-            answer: 'Air freight runs 3–7 days and suits critical replacement parts. Sea freight ranges from 15 days to regional hubs up to 45 days for distant ports. Stocked mechanical parts dispatch within 7–14 days; heavy machinery typically takes 30–60 days including port clearance.',
-        },
-        {
-            question: 'How do you handle customs clearance and documentation?',
-            answer: 'Our documentation team prepares every export paper — commercial invoice, packing list, Bill of Lading, certificate of origin and phytosanitary certificates where required. Specialist teams in Lagos and Port Harcourt handle Form M, SONCAP and NCS procedures, and we partner with local brokers at destination.',
-        },
-        {
-            question: 'Do you handle international shipping end to end?',
-            answer: 'Yes. We provide end-to-end logistics across sea, air and land freight, from inland haulage at origin through to handover at the destination port or site.',
-        },
-    ],
-
-    services: [
-        {
             question: 'How do you ensure quality before dispatch?',
             answer: 'Every consignment passes three rounds of inspection: manufacturer factory self-assessment and audit reports, Pishon on-site verification against specification, and independent third-party inspection before crating.',
-        },
-        {
-            question: 'Can you source specialised or discontinued parts?',
-            answer: 'Yes. Our Legacy Part service draws on a global network of salvage and specialty fabrication partners to find or recreate discontinued components.',
         },
     ],
 
@@ -57,7 +39,14 @@ export const faqs = {
         },
     ],
 
-    machinery: [
+    minerals: [
+        {
+            question: 'Do you provide third-party quality inspection reports?',
+            answer: 'Yes. We work with globally recognised inspection agencies such as SGS or Bureau Veritas to provide independent verification of quality, weight and grade before shipment.',
+        },
+    ],
+
+    industrial: [
         {
             question: 'Do you provide on-site installation for heavy machinery?',
             answer: 'Yes. Our technical team and local engineering partners provide full on-site assembly, commissioning and operator training for all heavy equipment purchased through Pishon.',
@@ -65,6 +54,10 @@ export const faqs = {
         {
             question: 'What certifications do your parts carry?',
             answer: 'Parts are sourced from OEM or certified manufacturers, and we provide full traceability with material certificates on request for critical industrial components.',
+        },
+        {
+            question: 'Can you source specialised or discontinued parts?',
+            answer: 'Yes. Our Legacy Part service draws on a global network of salvage and specialty fabrication partners to find or recreate discontinued components.',
         },
     ],
 
