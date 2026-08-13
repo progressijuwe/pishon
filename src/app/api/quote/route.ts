@@ -40,7 +40,7 @@ export async function POST(request: Request) {
             { label: 'Company', value: quote.company },
             { label: 'Email', value: quote.email },
             { label: 'Phone', value: quote.phone ?? '' },
-            { label: 'State', value: quote.state },
+            { label: 'Country', value: quote.country },
             { label: 'Category', value: quote.category },
             { label: 'Product', value: quote.product },
             { label: 'Quantity', value: `${quote.quantity} ${quote.unit}` },
