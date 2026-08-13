@@ -23,6 +23,7 @@ export const mainNav: readonly NavItem[] = [
             { title: 'Agriculture & Commodities', href: '/agriculture' },
             { title: 'Solid Minerals', href: '/minerals' },
             { title: 'Industrial Sourcing', href: '/industrial' },
+            { title: 'Paint Manufacturing', href: '/paint' },
         ],
     },
     { title: 'Services', href: '/services' },
@@ -45,6 +46,7 @@ export const footerNav: readonly NavGroup[] = [
             { title: 'Agriculture & Commodities', href: '/agriculture' },
             { title: 'Solid Minerals', href: '/minerals' },
             { title: 'Industrial Sourcing', href: '/industrial' },
+            { title: 'Paint Manufacturing', href: '/paint' },
         ],
     },
     {

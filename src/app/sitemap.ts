@@ -14,6 +14,7 @@ const ENTRIES: readonly Entry[] = [
     { path: '/agriculture/traceability', priority: 0.9, changeFrequency: 'yearly' },
     { path: '/minerals', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/industrial', priority: 0.9, changeFrequency: 'monthly' },
+    { path: '/paint', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/request-quote', priority: 0.9, changeFrequency: 'yearly' },
     { path: '/services', priority: 0.8, changeFrequency: 'yearly' },
     { path: '/about', priority: 0.7, changeFrequency: 'yearly' },

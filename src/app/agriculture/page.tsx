@@ -27,6 +27,7 @@ import { Hero } from '@/components/sections/Hero';
 import { MediaSplit } from '@/components/sections/MediaSplit';
 import { createMetadata } from '@/lib/seo';
 import { faqs } from '@/config/faqs';
+import commodityPalmFruitImage from '@/assets/commodity-palm-fruit.jpg';
 
 export const metadata = createMetadata({
     title: 'Agricultural Commodities',
@@ -66,13 +67,13 @@ export default function AgriculturalCommoditiesPage() {
                 columns={3}
                 mediaHeight="short"
                 title="Industrial Grade Catalog"
-                description="Our core commodity offerings, sorted by industrial grade and global availability."
+                description="Items marked ‘Grown on our farms’ come from land we own and operate, and can be traced to the plot. The rest are sourced through vetted cooperatives and aggregators."
                 action={{ label: 'Request Specification Sheets', href: '/contact' }}
                 items={[
                     {
                         title: 'Cocoa Beans',
                         badge: 'Main Crop, Grade 1',
-                        status: 'In Stock',
+                        status: 'Grown on our farms',
                         description: 'Main crop fermented beans with high oil content.',
                         image: commodityCocoaImage,
                         imageAlt: 'Premium raw cocoa beans on a neutral industrial surface.',
@@ -81,16 +82,26 @@ export default function AgriculturalCommoditiesPage() {
                     {
                         title: 'Cocoa Shells',
                         badge: 'Export Standard',
-                        status: 'In Stock',
+                        status: 'Grown on our farms',
                         description: 'Perfectly dried shells for animal feed and beverages.',
                         image: commodityCocoaShellsImage,
                         imageAlt: 'Dried cocoa shells in a professional container.',
                         action: { label: 'Request Quote', href: '/request-quote' },
                     },
                     {
+                        title: 'Palm Fruit & Palm Nut',
+                        badge: 'Banga / Tenera',
+                        status: 'Grown on our farms',
+                        description:
+                            'Fresh fruit bunches and loose palm nut from our own banga and oil palm plantations, for millers and oil processors.',
+                        image: commodityPalmFruitImage,
+                        imageAlt:
+                            'Freshly harvested ripe red oil palm fruit bunches with loose palm nuts.',
+                        action: { label: 'Request Quote', href: '/request-quote' },
+                    },
+                    {
                         title: 'Cashew Nuts',
                         badge: 'Kernel grades W180 – W320',
-                        status: 'In Stock',
                         description: 'Raw or roasted kernels sourced from select groves.',
                         image: commodityCashewImage,
                         imageAlt: 'Premium raw cashew nuts in a clean industrial tray.',
@@ -99,7 +110,6 @@ export default function AgriculturalCommoditiesPage() {
                     {
                         title: 'Sesame Seeds',
                         badge: '99.9% Purity',
-                        status: 'In Stock',
                         description: 'Hulled and unhulled seeds for oil and bakery use.',
                         image: commoditySesameImage,
                         imageAlt: 'Dried sesame seeds of export quality.',
@@ -108,7 +118,6 @@ export default function AgriculturalCommoditiesPage() {
                     {
                         title: 'Ginger',
                         badge: 'Split Dried',
-                        status: 'In Stock',
                         description: 'High-pungency ginger roots for pharma and spices.',
                         image: commodityGingerImage,
                         imageAlt: 'Clean, high-quality fresh ginger roots.',
@@ -117,7 +126,6 @@ export default function AgriculturalCommoditiesPage() {
                     {
                         title: 'Garlic',
                         badge: 'Export Grade',
-                        status: 'In Stock',
                         description: 'Premium dried garlic bulbs for culinary processing.',
                         image: commodityGarlicImage,
                         imageAlt: 'Premium export grade garlic bulbs.',
@@ -126,7 +134,6 @@ export default function AgriculturalCommoditiesPage() {
                     {
                         title: 'Turmeric',
                         badge: 'High Curcumin',
-                        status: 'In Stock',
                         description: 'Cleaned and dried finger rhizomes for global export.',
                         image: commodityTurmericImage,
                         imageAlt: 'Dried turmeric roots of industrial quality.',
@@ -135,7 +142,6 @@ export default function AgriculturalCommoditiesPage() {
                     {
                         title: 'Hibiscus',
                         badge: 'Whole Flowers',
-                        status: 'In Stock',
                         description: 'Sifted or whole calyxes for beverage industries.',
                         image: commodityHibiscusImage,
                         imageAlt: 'Dried whole hibiscus flowers of export grade.',
@@ -144,7 +150,6 @@ export default function AgriculturalCommoditiesPage() {
                     {
                         title: 'Soybeans',
                         badge: 'Non-GMO',
-                        status: 'In Stock',
                         description: 'Premium grade for oil production and animal feed.',
                         image: commoditySoybeansImage,
                         imageAlt: 'Premium soybeans in a clean container.',

@@ -33,6 +33,7 @@ import { StatGrid } from '@/components/sections/StatGrid';
 import { Heading } from '@/components/shared/Heading';
 import { Text } from '@/components/shared/Text';
 import { productSpecs } from '@/config/specs';
+import paintManufacturingImage from '@/assets/paint-manufacturing.jpg';
 
 export default function HomePage() {
     return (
@@ -65,7 +66,7 @@ export default function HomePage() {
             <CardGrid
                 id="divisions"
                 surface="alt"
-                title="Three Divisions, Three Kinds of Buyer"
+                title="Four Divisions, Four Kinds of Buyer"
                 description="Each division serves a different buyer with different requirements. Start where your purchase sits."
                 items={[
                     {
@@ -98,6 +99,15 @@ export default function HomePage() {
                             label: 'View Division',
                             href: '/industrial',
                         },
+                    },
+                    {
+                        title: 'Paint Manufacturing',
+                        description:
+                            'Paint formulated and filled at our own plant, supplied direct to distributors, contractors and developers. For merchants and project buyers.',
+                        image: paintManufacturingImage,
+                        imageAlt:
+                            'Sealed tins and buckets of paint stacked on a pallet inside a manufacturing plant.',
+                        action: { label: 'View Division', href: '/paint' },
                     },
                 ]}
             />
