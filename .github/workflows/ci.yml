@@ -19,9 +19,12 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
+            # Node 24 ships npm 11, which is what generated package-lock.json.
+            # npm 10 hoists the @unrs/resolver wasm bindings' @emnapi deps
+            # differently and rejects the lockfile as out of sync.
             - uses: actions/setup-node@v4
               with:
-                  node-version: 20
+                  node-version: 24
                   cache: npm
 
             - name: Install dependencies
@@ -43,7 +46,7 @@ jobs:
                   NEXT_PUBLIC_API_URL: https://pishon-nine.vercel.app/api
 
             - name: Start production server
-              run: npm start &
+              run: nohup npm start > server.log 2>&1 &
               env:
                   NEXT_PUBLIC_APP_URL: https://pishon-nine.vercel.app
                   NEXT_PUBLIC_API_URL: http://localhost:3000/api
@@ -53,3 +56,8 @@ jobs:
 
             - name: Smoke test
               run: node .github/scripts/smoke.mjs
+
+            # Without this a dead server reads as an opaque wait-on timeout.
+            - name: Server log
+              if: failure()
+              run: cat server.log
