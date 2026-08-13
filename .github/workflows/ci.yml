@@ -16,6 +16,10 @@ jobs:
         runs-on: ubuntu-latest
         timeout-minutes: 15
 
+        env:
+            NEXT_PUBLIC_APP_URL: https://pishon-nine.vercel.app
+            NEXT_PUBLIC_API_URL: https://pishon-nine.vercel.app/api
+
         steps:
             - uses: actions/checkout@v4
 
@@ -28,6 +32,12 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
+            # next-env.d.ts is gitignored, and it is what declares the image
+            # module types. Without this, tsc fails on every asset import
+            # because the file is only written by `next build`.
+            - name: Generate route and asset types
+              run: npx next typegen
+
             - name: Typecheck
               run: npm run typecheck
 
@@ -39,14 +49,10 @@ jobs:
 
             - name: Build
               run: npm run build
-              env:
-                  NEXT_PUBLIC_APP_URL: https://pishon-nine.vercel.app
-                  NEXT_PUBLIC_API_URL: https://pishon-nine.vercel.app/api
 
             - name: Start production server
               run: nohup npm start > server.log 2>&1 &
               env:
-                  NEXT_PUBLIC_APP_URL: https://pishon-nine.vercel.app
                   NEXT_PUBLIC_API_URL: http://localhost:3000/api
 
             - name: Wait for server
