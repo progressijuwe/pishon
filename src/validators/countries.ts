@@ -1,9 +1,3 @@
-/**
- * ISO 3166-1 English short names, alphabetical. Used by the quote wizard so a
- * buyer outside Nigeria can be recorded accurately. Territories that trade
- * under their own customs regime (Hong Kong, Macao, Taiwan) are included
- * because they matter for shipping documentation.
- */
 export const COUNTRIES = [
     'Afghanistan',
     'Albania',
