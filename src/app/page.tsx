@@ -55,7 +55,7 @@ export default function HomePage() {
                     'Because we farm our own cocoa and oil palm, a consignment can be traced back to the plot it grew on rather than to the last aggregator who handled it.',
                 ]}
                 image={companyOverviewImage}
-                imageAlt="An export manager inspecting mechanical parts in a modern warehouse facility."
+                imageAlt="A plant worker handling a bulk sack on the production floor."
                 highlight={{
                     value: 'Own farms',
                     description: 'Cocoa and oil palm grown on land we operate.',

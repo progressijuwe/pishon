@@ -189,7 +189,7 @@ export function NavMenu({ items, cta }: NavMenuProps) {
                         <Container className={cn(!isDesktop && 'px-6')}>
                             <div className="flex h-20 items-center justify-between gap-4">
                                 <span className="text-h4 font-bold tracking-tight">
-                                    {siteConfig.name}
+                                    {siteConfig.displayName}
                                 </span>
                                 <DialogPrimitive.Close asChild>
                                     <Button

@@ -178,7 +178,7 @@ export default function AboutPage() {
                         <div className="relative aspect-4/3 overflow-hidden rounded-xl shadow-xl">
                             <Image
                                 src={aboutTrustImage}
-                                alt="Two executives shaking hands in a boardroom overlooking an industrial terminal."
+                                alt="Two executives shaking hands across a desk in an office overlooking Benin City."
                                 fill
                                 sizes="(min-width: 1024px) 33vw, 100vw"
                                 className="object-cover"
