@@ -15,7 +15,7 @@ import { siteConfig } from '@/config/site';
 import { ApiError, getErrorMessage } from '@/lib/api-error';
 import { cn } from '@/lib/utils';
 import { api } from '@/services/api';
-import { NIGERIAN_STATES } from '@/validators/contact';
+import { COUNTRIES } from '@/validators/countries';
 import {
     QUOTE_CATEGORIES,
     QUOTE_PACKAGING,
@@ -53,7 +53,7 @@ export function QuoteWizard() {
             jobTitle: '',
             email: '',
             phone: '',
-            state: undefined,
+            country: undefined,
             category: undefined,
             product: '',
             quantity: '',
@@ -216,12 +216,13 @@ export function QuoteWizard() {
                             {...register('phone')}
                         />
                         <Select
-                            label="State"
-                            placeholder="Select your state"
+                            label="Country"
+                            placeholder="Select your country"
+                            autoComplete="country-name"
                             defaultValue=""
-                            options={toOptions(NIGERIAN_STATES)}
-                            error={errors.state?.message}
-                            {...register('state')}
+                            options={toOptions(COUNTRIES)}
+                            error={errors.country?.message}
+                            {...register('country')}
                         />
                     </div>
                 ) : null}
@@ -375,7 +376,7 @@ const REVIEW_GROUPS = [
             ['Job title', 'jobTitle'],
             ['Email', 'email'],
             ['Phone', 'phone'],
-            ['State', 'state'],
+            ['Country', 'country'],
         ],
     },
     {

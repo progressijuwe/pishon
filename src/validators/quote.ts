@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { NIGERIAN_STATES } from './contact';
+import { COUNTRIES } from './countries';
 
 export const QUOTE_CATEGORIES = [
     'Agricultural Commodities',
@@ -47,7 +47,7 @@ export const quoteSchema = z.object({
         .regex(/^[+()\d][\d\s()-]{6,19}$/, 'Enter a valid phone number')
         .optional()
         .or(z.literal('')),
-    state: z.enum(NIGERIAN_STATES, 'Select where you are based'),
+    country: z.enum(COUNTRIES, 'Select your country'),
 
     category: z.enum(QUOTE_CATEGORIES, 'Select a product category'),
     product: z.string().trim().min(2, 'Name the specific product'),
@@ -90,7 +90,7 @@ export const QUOTE_STEPS = [
     {
         id: 'business',
         title: 'Business Information',
-        fields: ['fullName', 'company', 'jobTitle', 'email', 'phone', 'state'],
+        fields: ['fullName', 'company', 'jobTitle', 'email', 'phone', 'country'],
     },
     {
         id: 'product',
