@@ -136,8 +136,7 @@ export default function ExportProcessPage() {
                             'You receive a costed quotation covering unit price, our handling fees, terms and a delivery window — usually within one to two days.',
                         icon: <ReceiptTextIcon />,
                         image: companyOverviewImage,
-                        imageAlt:
-                            'An export manager inspecting mechanical parts in a modern warehouse facility.',
+                        imageAlt: 'A plant worker handling a bulk sack on the production floor.',
                     },
                     {
                         label: 'Step 04',
@@ -157,7 +156,7 @@ export default function ExportProcessPage() {
                         icon: <SearchCheckIcon />,
                         image: servicesQaImage,
                         imageAlt:
-                            'A technician taking high-precision laser measurements of a component.',
+                            'A quality technician measuring a machined component with digital calipers.',
                     },
                     {
                         label: 'Step 06',
@@ -204,7 +203,7 @@ export default function ExportProcessPage() {
                         icon: <HandshakeIcon />,
                         image: aboutTrustImage,
                         imageAlt:
-                            'Two executives shaking hands in a boardroom overlooking an industrial terminal.',
+                            'Two executives shaking hands across a desk in an office overlooking Benin City.',
                     },
                 ]}
             />
@@ -221,7 +220,7 @@ export default function ExportProcessPage() {
                     'Randomised sampling consistent with ISO standards',
                 ]}
                 image={servicesQaImage}
-                imageAlt="A technician taking high-precision laser measurements of a component."
+                imageAlt="A quality technician measuring a machined component with digital calipers."
             />
 
             <FeatureGrid

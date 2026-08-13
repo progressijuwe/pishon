@@ -53,7 +53,7 @@ export default function ContactPage() {
                     'We understand that industrial downtime is not an option. Our team of logistics and procurement specialists is on hand to facilitate your global requirements.',
                 ]}
                 image={servicesIntroImage}
-                imageAlt="A procurement specialist reviewing stock in a modern warehouse facility."
+                imageAlt="A quality inspector measuring a steel gear with digital calipers in a parts warehouse."
                 highlight={{
                     value: '24–48h',
                     description: 'Detailed response to every enterprise enquiry.',

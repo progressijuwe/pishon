@@ -168,7 +168,7 @@ export default function GalleryPage() {
                             'Our leadership connects Nigerian production with the operators and processors who depend on it.',
                         image: aboutTrustImage,
                         imageAlt:
-                            'Two executives shaking hands in a boardroom overlooking an industrial terminal.',
+                            'Two executives shaking hands across a desk in an office overlooking Benin City.',
                     },
                 ]}
             />

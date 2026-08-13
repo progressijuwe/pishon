@@ -23,7 +23,7 @@ export function Footer() {
                 <div className="grid grid-cols-1 gap-12 py-20 sm:grid-cols-2 lg:grid-cols-6">
                     <div className="lg:col-span-2">
                         <div className="text-h4 mb-6 font-bold tracking-tight">
-                            {siteConfig.name}
+                            {siteConfig.displayName}
                         </div>
 
                         <Text size="small" className="mb-12 max-w-xs opacity-70">

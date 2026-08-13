@@ -1,0 +1,67 @@
+name: CI
+
+on:
+    push:
+        branches: [main, develop]
+    pull_request:
+        branches: [main, develop]
+
+concurrency:
+    group: ci-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    verify:
+        name: Verify
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+
+        env:
+            NEXT_PUBLIC_APP_URL: https://pishon-nine.vercel.app
+            NEXT_PUBLIC_API_URL: https://pishon-nine.vercel.app/api
+
+        steps:
+            - uses: actions/checkout@v4
+
+            # lint-staged requires >=22.22.1; 24 also matches local development.
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            # next-env.d.ts is gitignored, and it is what declares the image
+            # module types. Without this, tsc fails on every asset import
+            # because the file is only written by `next build`.
+            - name: Generate route and asset types
+              run: npx next typegen
+
+            - name: Typecheck
+              run: npm run typecheck
+
+            - name: Lint
+              run: npm run lint
+
+            - name: Check formatting
+              run: npm run format:check
+
+            - name: Build
+              run: npm run build
+
+            - name: Start production server
+              run: nohup npm start > server.log 2>&1 &
+              env:
+                  NEXT_PUBLIC_API_URL: http://localhost:3000/api
+
+            - name: Wait for server
+              run: npx wait-on http://localhost:3000 --timeout 60000
+
+            - name: Smoke test
+              run: node .github/scripts/smoke.mjs
+
+            # Without this a dead server reads as an opaque wait-on timeout.
+            - name: Server log
+              if: failure()
+              run: cat server.log 2>/dev/null || echo 'no server log — failed before the server started'

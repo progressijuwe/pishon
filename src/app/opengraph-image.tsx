@@ -36,7 +36,7 @@ export default async function Image() {
                     <path d="M31.999 2c-16.568 0-30 13.432-30 30s13.432 30 30 30C48.568 62 62 48.568 62 32S48.568 2 31.999 2m9.398 31.949c-1.699 1.418-4.125 2.125-7.277 2.125h-6.041v10.434h-6.023V17.492h12.458c2.872 0 5.162.748 6.87 2.244c1.707 1.496 2.562 3.813 2.562 6.949c-.001 3.424-.85 5.846-2.549 7.264" />
                 </svg>
                 <span style={{ fontSize: 40, fontWeight: 800, color: '#ffffff' }}>
-                    {siteConfig.name}
+                    {siteConfig.displayName}
                 </span>
             </div>
 

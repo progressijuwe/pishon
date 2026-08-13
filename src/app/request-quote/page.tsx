@@ -95,7 +95,7 @@ export default function RequestQuotePage() {
                     'Our procurement specialists can help you define specifications, identify cost-saving logistics routes, and confirm the exact grade of material your operation requires — before you commit to anything.',
                 ]}
                 image={servicesQaImage}
-                imageAlt="A technician taking high-precision laser measurements of a component."
+                imageAlt="A quality technician measuring a machined component with digital calipers."
                 action={{ label: 'Talk to an expert', href: '/contact' }}
             />
 
