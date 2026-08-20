@@ -9,7 +9,7 @@ import {
 
 import agriFarmerImage from '@/assets/agri-farmer.jpg';
 import agriSourcingImage from '@/assets/agri-sourcing.jpg';
-import commodityCashewImage from '@/assets/commodity-cashew.jpg';
+import commodityCashewImage from '@/assets/product-cashew.jpg';
 import commodityCocoaShellsImage from '@/assets/commodity-cocoa-shells.jpg';
 import commodityCocoaImage from '@/assets/commodity-cocoa.jpg';
 import commodityGarlicImage from '@/assets/commodity-garlic.jpg';
@@ -17,7 +17,13 @@ import commodityGingerImage from '@/assets/commodity-ginger.jpg';
 import commodityHibiscusImage from '@/assets/commodity-hibiscus.jpg';
 import commoditySesameImage from '@/assets/commodity-sesame.jpg';
 import commoditySoybeansImage from '@/assets/commodity-soybeans.jpg';
+import commodityBitterKolaImage from '@/assets/commodity-bitterkola.jpg';
+import commodityCharcoalImage from '@/assets/commodity-charcoal.jpg';
 import commodityTurmericImage from '@/assets/commodity-turmeric.jpg';
+import commodityKolaNutImage from '@/assets/commodity-kolanuts.jpg';
+import commodityMoringaImage from '@/assets/commodity-moringa.jpg';
+import commodityPeanutsImage from '@/assets/commodity-peanuts.jpg';
+import commodityTigernutImage from '@/assets/commodity-tigernut.jpg';
 import productCocoaImage from '@/assets/product-cocoa.jpg';
 import { CardGrid } from '@/components/sections/CardGrid';
 import { CtaBand } from '@/components/sections/CtaBand';
@@ -153,6 +159,60 @@ export default function AgriculturalCommoditiesPage() {
                         description: 'Premium grade for oil production and animal feed.',
                         image: commoditySoybeansImage,
                         imageAlt: 'Premium soybeans in a clean container.',
+                        action: { label: 'Request Quote', href: '/request-quote' },
+                    },
+                    {
+                        title: 'Bitter Kola',
+                        badge: 'Export Grade',
+                        description:
+                            'Premium dried bitter kola nuts, carefully selected for traditional, nutritional, and commercial use.',
+                        image: commodityBitterKolaImage,
+                        imageAlt: 'Premium bitter kola nuts prepared for export.',
+                        action: { label: 'Request Quote', href: '/request-quote' },
+                    },
+                    {
+                        title: 'Kolanut',
+                        badge: 'Fresh & Dried',
+                        description:
+                            'Quality kola nuts sourced from trusted growers for traditional, beverage, and commercial applications.',
+                        image: commodityKolaNutImage,
+                        imageAlt: 'Fresh and dried kola nuts prepared for commercial supply.',
+                        action: { label: 'Request Quote', href: '/request-quote' },
+                    },
+                    {
+                        title: 'Charcoal',
+                        badge: 'Premium Grade',
+                        description:
+                            'High-quality charcoal with excellent heat output for domestic, commercial, and industrial applications.',
+                        image: commodityCharcoalImage,
+                        imageAlt: 'Premium hardwood charcoal prepared for export.',
+                        action: { label: 'Request Quote', href: '/request-quote' },
+                    },
+                    {
+                        title: 'Moringa',
+                        badge: 'Premium Quality',
+                        description:
+                            'Carefully processed moringa leaves and products valued for nutritional, herbal, and wellness applications.',
+                        image: commodityMoringaImage,
+                        imageAlt: 'Premium dried moringa leaves prepared for processing.',
+                        action: { label: 'Request Quote', href: '/request-quote' },
+                    },
+                    {
+                        title: 'Peanuts',
+                        badge: 'Export Grade',
+                        description:
+                            'Quality raw peanuts selected for food processing, oil production, and animal feed applications.',
+                        image: commodityPeanutsImage,
+                        imageAlt: 'Premium raw peanuts prepared for export.',
+                        action: { label: 'Request Quote', href: '/request-quote' },
+                    },
+                    {
+                        title: 'Tigernut',
+                        badge: 'Premium Grade',
+                        description:
+                            'Clean, naturally sweet tigernuts suitable for beverages, snacks, flour, and food processing.',
+                        image: commodityTigernutImage,
+                        imageAlt: 'Premium dried tigernuts prepared for export.',
                         action: { label: 'Request Quote', href: '/request-quote' },
                     },
                 ]}
