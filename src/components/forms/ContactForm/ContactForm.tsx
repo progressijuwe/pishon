@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 
 import { siteConfig } from '@/config/site';
 import { ApiError, getErrorMessage } from '@/lib/api-error';
+import { whatsappHref } from '@/lib/contact-links';
 import { api } from '@/services/api';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert';
 import { Button } from '@/components/ui/Button';
@@ -83,8 +84,16 @@ export function ContactForm() {
                     <AlertTitle>Couldn&apos;t send your enquiry</AlertTitle>
                     <AlertDescription>
                         {getErrorMessage(mutation.error)}{' '}
-                        <a href={`mailto:${siteConfig.email}`} className="font-semibold underline">
-                            {siteConfig.email}
+                        <a
+                            href={whatsappHref(
+                                `Hello ${siteConfig.name}, I could not submit the form on your website.`,
+                            )}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Message us on WhatsApp at ${siteConfig.phone}`}
+                            className="font-semibold underline"
+                        >
+                            {siteConfig.phone}
                         </a>
                     </AlertDescription>
                 </Alert>

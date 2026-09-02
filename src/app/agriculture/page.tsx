@@ -22,6 +22,7 @@ import commodityCharcoalImage from '@/assets/commodity-charcoal.jpg';
 import commodityTurmericImage from '@/assets/commodity-turmeric.jpg';
 import commodityKolaNutImage from '@/assets/commodity-kolanuts.jpg';
 import commodityMoringaImage from '@/assets/commodity-moringa.jpg';
+import commodityPalmFruitImage from '@/assets/commodity-palm-fruit.jpg';
 import commodityPeanutsImage from '@/assets/commodity-peanuts.jpg';
 import commodityTigernutImage from '@/assets/commodity-tigernut.jpg';
 import productCocoaImage from '@/assets/product-cocoa.jpg';
@@ -33,7 +34,6 @@ import { Hero } from '@/components/sections/Hero';
 import { MediaSplit } from '@/components/sections/MediaSplit';
 import { createMetadata } from '@/lib/seo';
 import { faqs } from '@/config/faqs';
-import commodityPalmFruitImage from '@/assets/commodity-palm-fruit.jpg';
 
 export const metadata = createMetadata({
     title: 'Agricultural Commodities',

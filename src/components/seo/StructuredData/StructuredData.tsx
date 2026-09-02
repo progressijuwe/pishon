@@ -23,7 +23,6 @@ export function StructuredData() {
             contactPoint: {
                 '@type': 'ContactPoint',
                 contactType: 'sales',
-                email: siteConfig.email,
                 telephone: siteConfig.phone,
                 areaServed: 'NG',
                 availableLanguage: 'English',

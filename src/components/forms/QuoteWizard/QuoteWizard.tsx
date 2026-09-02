@@ -2,7 +2,13 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, SendIcon } from 'lucide-react';
+import {
+    ArrowLeftIcon,
+    ArrowRightIcon,
+    CheckIcon,
+    MessageCircleIcon,
+    SendIcon,
+} from 'lucide-react';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -13,6 +19,7 @@ import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import { siteConfig } from '@/config/site';
 import { ApiError, getErrorMessage } from '@/lib/api-error';
+import { isContactNumberConfigured, whatsappHref } from '@/lib/contact-links';
 import { cn } from '@/lib/utils';
 import { api } from '@/services/api';
 import { COUNTRIES } from '@/validators/countries';
@@ -162,10 +169,15 @@ export function QuoteWizard() {
                         <AlertDescription>
                             {getErrorMessage(mutation.error)}{' '}
                             <a
-                                href={`mailto:${siteConfig.email}`}
+                                href={whatsappHref(
+                                    `Hello ${siteConfig.name}, I could not submit my quote request.`,
+                                )}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`Message us on WhatsApp at ${siteConfig.phone}`}
                                 className="font-semibold underline"
                             >
-                                {siteConfig.email}
+                                {siteConfig.phone}
                             </a>
                         </AlertDescription>
                     </Alert>
@@ -339,32 +351,81 @@ export function QuoteWizard() {
                         </Button>
                     ) : null}
 
-                    {isReview ? (
-                        <Button
-                            type="submit"
-                            size="lg"
-                            isLoading={isSubmitting || mutation.isPending}
-                            loadingLabel="Submitting your request"
-                            rightIcon={<SendIcon />}
-                            className="ml-auto"
-                        >
-                            Submit quotation request
-                        </Button>
-                    ) : (
-                        <Button
-                            type="button"
-                            size="lg"
-                            onClick={handleNext}
-                            rightIcon={<ArrowRightIcon />}
-                            className="ml-auto"
-                        >
-                            {`Next: ${QUOTE_STEPS[stepIndex + 1].title}`}
-                        </Button>
-                    )}
+                    <div className="ml-auto flex flex-wrap items-center gap-3">
+                        {isReview && isContactNumberConfigured ? (
+                            <Button
+                                asChild
+                                variant="outline"
+                                size="lg"
+                                leftIcon={<MessageCircleIcon />}
+                            >
+                                <a
+                                    href={whatsappHref(quoteWhatsappMessage(getValues()))}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Send on WhatsApp
+                                </a>
+                            </Button>
+                        ) : null}
+
+                        {isReview ? (
+                            <Button
+                                type="submit"
+                                size="lg"
+                                isLoading={isSubmitting || mutation.isPending}
+                                loadingLabel="Submitting your request"
+                                rightIcon={<SendIcon />}
+                            >
+                                Submit quotation request
+                            </Button>
+                        ) : (
+                            <Button
+                                type="button"
+                                size="lg"
+                                onClick={handleNext}
+                                rightIcon={<ArrowRightIcon />}
+                            >
+                                {`Next: ${QUOTE_STEPS[stepIndex + 1].title}`}
+                            </Button>
+                        )}
+                    </div>
                 </div>
             </form>
         </div>
     );
+}
+
+/**
+ * Builds the pre-filled WhatsApp message from the same groups the on-screen
+ * review renders, so the two can never drift apart. Free-text fields accept up
+ * to 2000 characters each, which would blow past practical URL limits once
+ * encoded, so they are trimmed here — the full text still goes by email.
+ */
+const FIELD_LIMIT = 300;
+const MESSAGE_LIMIT = 1500;
+
+function quoteWhatsappMessage(values: QuoteInput) {
+    const lines = ['*New quote request*', ''];
+
+    for (const group of REVIEW_GROUPS) {
+        const filled = group.rows.filter(([, field]) => String(values[field] ?? '').trim());
+        if (filled.length === 0) continue;
+
+        lines.push(`*${group.title}*`);
+        for (const [label, field] of filled) {
+            const value = String(values[field]).trim();
+            const clipped =
+                value.length > FIELD_LIMIT ? `${value.slice(0, FIELD_LIMIT).trimEnd()}…` : value;
+            lines.push(`${label}: ${clipped}`);
+        }
+        lines.push('');
+    }
+
+    const message = lines.join('\n').trim();
+    return message.length > MESSAGE_LIMIT
+        ? `${message.slice(0, MESSAGE_LIMIT).trimEnd()}…\n\n(Full details continue by email.)`
+        : message;
 }
 
 const REVIEW_GROUPS = [
@@ -426,7 +487,7 @@ function ReviewSummary({ values }: { values: QuoteInput }) {
                                     <span className="text-small text-muted-foreground">
                                         {label}
                                     </span>
-                                    <span className="text-small col-span-2 font-medium break-words">
+                                    <span className="text-small col-span-2 font-medium wrap-break-word">
                                         {value === undefined || value === '' ? (
                                             <span className="text-muted-foreground">
                                                 Not provided

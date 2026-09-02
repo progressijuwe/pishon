@@ -38,7 +38,3 @@ export const productSpecs = {
     string,
     { name: string; grade: string; origin: string; specs: readonly Spec[] }
 >;
-
-export const AGRICULTURAL_HEADLINE = 'cocoa, cashew nuts, sesame seeds and spices';
-
-export const MINERALS_HEADLINE = 'coal, lithium ore, limestone and iron ore';

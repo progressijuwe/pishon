@@ -51,7 +51,7 @@ export async function POST(request: Request) {
         return NextResponse.json(
             {
                 message:
-                    'Our enquiry system is not accepting messages yet. Please email us directly and we will respond within one business day.',
+                    'Our enquiry system is not accepting messages yet. Please reach us on WhatsApp and we will respond within one business day.',
                 code: 'delivery_not_configured',
             },
             { status: 503 },
@@ -64,7 +64,7 @@ export async function POST(request: Request) {
         return NextResponse.json(
             {
                 message:
-                    'We could not send your enquiry just now. Please try again, or email us directly.',
+                    'We could not send your enquiry just now. Please try again, or reach us on WhatsApp.',
                 code: 'delivery_failed',
             },
             { status: 502 },
