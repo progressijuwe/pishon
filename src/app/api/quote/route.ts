@@ -60,7 +60,7 @@ export async function POST(request: Request) {
         return NextResponse.json(
             {
                 message:
-                    'Our quotation system is not accepting requests yet. Please email your specifications directly and we will respond within one business day.',
+                    'Our quotation system is not accepting requests yet. Please send your specifications on WhatsApp and we will respond within one business day.',
                 code: 'delivery_not_configured',
             },
             { status: 503 },
@@ -73,7 +73,7 @@ export async function POST(request: Request) {
         return NextResponse.json(
             {
                 message:
-                    'We could not submit your request just now. Please try again, or email your specifications directly.',
+                    'We could not submit your request just now. Please try again, or send your specifications on WhatsApp.',
                 code: 'delivery_failed',
             },
             { status: 502 },

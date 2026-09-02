@@ -3,7 +3,6 @@ import {
     HandshakeIcon,
     InfoIcon,
     LockIcon,
-    MailIcon,
     MapPinIcon,
     MessageCircleIcon,
     PhoneIcon,
@@ -24,7 +23,7 @@ import { Section } from '@/components/shared/Section';
 import { SectionHeading } from '@/components/shared/SectionHeading';
 import { Text } from '@/components/shared/Text';
 import { siteConfig } from '@/config/site';
-import { mailHref, telHref, whatsappHref } from '@/lib/contact-links';
+import { telHref, whatsappHref } from '@/lib/contact-links';
 import { createMetadata } from '@/lib/seo';
 
 export const metadata = createMetadata({
@@ -118,12 +117,6 @@ export default function ContactPage() {
                                     ]}
                                 />
                                 <ContactDetail
-                                    icon={<MailIcon />}
-                                    label="Email"
-                                    lines={[siteConfig.email]}
-                                    href={mailHref}
-                                />
-                                <ContactDetail
                                     icon={<PhoneIcon />}
                                     label="Telephone"
                                     lines={[siteConfig.phone]}
@@ -158,7 +151,11 @@ export default function ContactPage() {
                 description="Send us your specification and our procurement officers will respond within one business day."
                 actions={[
                     { label: 'Send an Enquiry', href: '#enquiry' },
-                    { label: 'Email Us', href: `mailto:${siteConfig.email}`, variant: 'outline' },
+                    {
+                        label: 'Message on WhatsApp',
+                        href: whatsappHref(`Hello ${siteConfig.name}, I have an enquiry.`),
+                        variant: 'outline',
+                    },
                 ]}
             />
         </>

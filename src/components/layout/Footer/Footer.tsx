@@ -1,10 +1,10 @@
-import { MailIcon, MessageCircleIcon, PhoneIcon } from 'lucide-react';
+import { MessageCircleIcon, PhoneIcon } from 'lucide-react';
 import Link from 'next/link';
 
 import { Container } from '@/components/shared/Container';
 import { Text } from '@/components/shared/Text';
 import { footerNav, siteConfig } from '@/config/site';
-import { mailHref, telHref, whatsappHref } from '@/lib/contact-links';
+import { telHref, whatsappHref } from '@/lib/contact-links';
 
 const SOCIAL_LINKS = [
     {
@@ -12,7 +12,6 @@ const SOCIAL_LINKS = [
         href: whatsappHref(`Hello ${siteConfig.name}, I have an enquiry.`),
         Icon: MessageCircleIcon,
     },
-    { label: 'Email us', href: mailHref, Icon: MailIcon },
     { label: 'Call us', href: telHref, Icon: PhoneIcon },
 ] as const;
 

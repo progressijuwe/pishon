@@ -9,7 +9,6 @@ export const siteConfig = {
     description:
         'A Nigerian producer, supplier and logistics partner — farm commodities, solid minerals, industrial sourcing, warehousing and export logistics for businesses across Nigeria.',
     tagline: 'Commodities, Minerals & Industrial Supply in Nigeria',
-    email: 'info@pishonparts.com',
     phone: '+234 816 872 9344',
     url: env.NEXT_PUBLIC_APP_URL,
     locale: 'en_US',
@@ -72,5 +71,3 @@ export const footerNav: readonly NavGroup[] = [
         ],
     },
 ] as const;
-
-export type SiteConfig = typeof siteConfig;
